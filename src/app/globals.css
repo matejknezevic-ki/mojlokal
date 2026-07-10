@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+@theme {
+  /* mojlokal café palette */
+  --color-cream: #faf6f0;
+  --color-cream-dark: #f3ecdf;
+  --color-espresso: #3b2f2a;
+  --color-espresso-light: #6b5d54;
+  --color-terracotta: #c4623a;
+  --color-terracotta-dark: #a94f2c;
+  --color-terracotta-light: #f4e3d9;
+  --color-sage: #7c8b6f;
+  --color-sage-dark: #5f6d54;
+  --color-sage-light: #e9ede4;
+  --color-danger: #b3452f;
+  --color-success: #4a7c59;
+  --color-success-light: #e3efe7;
+
+  --font-display: var(--font-fraunces);
+  --font-sans: var(--font-instrument);
+
+  --shadow-soft: 0 2px 16px rgba(59, 47, 42, 0.08);
+  --shadow-lifted: 0 8px 32px rgba(59, 47, 42, 0.14);
+
+  --radius-card: 1.25rem;
+}
+
+body {
+  background: var(--color-cream);
+  color: var(--color-espresso);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Numeric inputs without spinners (cash amount) */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
