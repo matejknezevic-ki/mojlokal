@@ -17,6 +17,17 @@ Next.js 16 (App Router) · Tailwind v4 · Supabase (Postgres, Auth, RLS) · Anth
 
 ## Setup
 
+**Schnellweg (automatisch):** Personal Access Token unter
+[supabase.com/dashboard/account/tokens](https://supabase.com/dashboard/account/tokens) erstellen, dann:
+
+```bash
+SUPABASE_ACCESS_TOKEN=sbp_xxx node scripts/setup-supabase.mjs
+```
+
+Das Skript legt das Projekt an, spielt die Migration ein, deaktiviert die E-Mail-Bestätigung und schreibt `.env.local`.
+
+**Manuell:**
+
 1. **Supabase-Projekt anlegen** und die Migration ausführen:
    `supabase/migrations/001_initial_schema.sql` (Tabellen + RLS + `end_shift`-RPC).
    In den Auth-Einstellungen **E-Mail-Bestätigung deaktivieren** (sonst blockiert die Registrierung im Demo).
