@@ -265,6 +265,7 @@ export const hr = {
 
   // Waiter bottom nav
   "wnav.home": "Početna",
+  "wnav.schedule": "Raspored",
   "wnav.month": "Moj mjesec",
   "wnav.availability": "Dostupnost",
   "wnav.history": "Povijest",
@@ -319,6 +320,16 @@ export const hr = {
   "swap.cancel": "Povuci ponudu",
   "swap.none": "Trenutno nitko ne nudi zamjenu.",
   "swap.byYou": "tvoja ponuda",
+  "swap.requestTake": "Zatraži ovu smjenu",
+  "swap.requested": "Zatraženo — čeka šefa",
+  "swap.confirmTake": "Želiš li zatražiti ovu smjenu? Šef mora odobriti zamjenu.",
+  "swap.confirmOffer": "Želiš li ponuditi ovu smjenu kolegama?",
+
+  // Waiter schedule
+  "wraspored.title": "Tjedni raspored",
+  "wraspored.you": "ti",
+  "wraspored.empty": "Za ovaj tjedan još nema objavljenog rasporeda.",
+  "wraspored.hint": "Dodirni svoju smjenu da je ponudiš, ili tuđu da je zatražiš.",
 
   // Calendar feed
   "cal.button": "Dodaj smjene u kalendar",

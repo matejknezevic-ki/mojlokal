@@ -2,11 +2,12 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { CalendarCheck2, History, Home, PiggyBank } from "lucide-react";
+import { CalendarCheck2, CalendarDays, History, Home, PiggyBank } from "lucide-react";
 import { useT } from "@/lib/i18n/client";
 
 const items = [
   { href: "/w/app", icon: Home, key: "wnav.home" },
+  { href: "/w/app/raspored", icon: CalendarDays, key: "wnav.schedule" },
   { href: "/w/app/mjesec", icon: PiggyBank, key: "wnav.month" },
   { href: "/w/app/dostupnost", icon: CalendarCheck2, key: "wnav.availability" },
   { href: "/w/app/povijest", icon: History, key: "wnav.history" },

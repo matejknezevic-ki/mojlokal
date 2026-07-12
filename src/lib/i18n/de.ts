@@ -267,6 +267,7 @@ export const de: Record<TKey, string> = {
 
   // Waiter bottom nav
   "wnav.home": "Start",
+  "wnav.schedule": "Plan",
   "wnav.month": "Mein Monat",
   "wnav.availability": "Verfügbarkeit",
   "wnav.history": "Verlauf",
@@ -321,6 +322,16 @@ export const de: Record<TKey, string> = {
   "swap.cancel": "Angebot zurückziehen",
   "swap.none": "Aktuell bietet niemand eine Schicht an.",
   "swap.byYou": "dein Angebot",
+  "swap.requestTake": "Diese Schicht anfragen",
+  "swap.requested": "Angefragt — wartet auf den Chef",
+  "swap.confirmTake": "Möchtest du diese Schicht anfragen? Der Chef muss den Tausch genehmigen.",
+  "swap.confirmOffer": "Möchtest du diese Schicht den Kollegen zum Tausch anbieten?",
+
+  // Waiter schedule
+  "wraspored.title": "Wochenplan",
+  "wraspored.you": "du",
+  "wraspored.empty": "Für diese Woche gibt es noch keinen veröffentlichten Plan.",
+  "wraspored.hint": "Tippe auf deine Schicht, um sie anzubieten — oder auf eine fremde, um sie anzufragen.",
 
   // Calendar feed
   "cal.button": "Schichten in Kalender übernehmen",

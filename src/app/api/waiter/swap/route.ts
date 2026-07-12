@@ -40,6 +40,42 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true });
   }
 
+  if (action === "request") {
+    // Ask to take over a COLLEAGUE's future published shift — goes straight to
+    // the owner for approval (from = current shift owner, to = requester).
+    const { data: shift } = await admin
+      .from("shifts")
+      .select("id, waiter_id, venue_id, shift_date, schedules!inner(status)")
+      .eq("id", body?.shiftId)
+      .eq("venue_id", session.venueId)
+      .eq("schedules.status", "published")
+      .maybeSingle();
+    if (
+      !shift ||
+      shift.waiter_id === session.waiterId ||
+      shift.shift_date < new Date().toISOString().slice(0, 10)
+    ) {
+      return NextResponse.json({ error: "not_found" }, { status: 404 });
+    }
+    const { data: existing } = await admin
+      .from("swap_requests")
+      .select("id")
+      .eq("shift_id", shift.id)
+      .in("status", ["open", "accepted"])
+      .maybeSingle();
+    if (existing) return NextResponse.json({ error: "exists" }, { status: 409 });
+
+    const { error } = await admin.from("swap_requests").insert({
+      venue_id: session.venueId,
+      shift_id: shift.id,
+      from_waiter_id: shift.waiter_id,
+      to_waiter_id: session.waiterId,
+      status: "accepted",
+    });
+    if (error) return NextResponse.json({ error: "db" }, { status: 500 });
+    return NextResponse.json({ ok: true });
+  }
+
   if (action === "take") {
     const { data: swap } = await admin
       .from("swap_requests")
