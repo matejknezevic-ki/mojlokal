@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { Sparkles, Megaphone, CheckCircle2 } from "lucide-react";
 import { useT } from "@/lib/i18n/client";
@@ -27,8 +27,31 @@ export function ScheduleGrid({
   const t = useT();
   const router = useRouter();
   const [generating, setGenerating] = useState(false);
+  const [progressStep, setProgressStep] = useState(0);
   const [error, setError] = useState<string | null>(null);
   const [pending, startTransition] = useTransition();
+  const [refreshing, startRefresh] = useTransition();
+
+  // Overlay stays visible until the refreshed server data is actually rendered.
+  const busy = generating || refreshing;
+  const progressKeys = [
+    "schedule.progress1",
+    "schedule.progress2",
+    "schedule.progress3",
+  ] as const;
+
+  useEffect(() => {
+    if (!busy) {
+      setProgressStep(0);
+      return;
+    }
+    const id = setInterval(
+      () => setProgressStep((s) => Math.min(s + 1, progressKeys.length - 1)),
+      4000
+    );
+    return () => clearInterval(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [busy]);
 
   const days = Array.from({ length: 7 }, (_, i) => addDays(weekStart, i)).filter(
     (d) => openingDays.includes(isoWeekday(d))
@@ -51,7 +74,8 @@ export function ScheduleGrid({
         setError(data.error === "need_data" ? t("schedule.needData") : t("common.error"));
         return;
       }
-      router.refresh();
+      // startRefresh keeps `refreshing` true until the new server payload is in.
+      startRefresh(() => router.refresh());
     } catch {
       setError(t("common.error"));
     } finally {
@@ -78,10 +102,38 @@ export function ScheduleGrid({
 
   return (
     <div className="space-y-4">
+      {/* Progress overlay while the AI plans + the fresh data loads */}
+      {busy && (
+        <div className="fixed inset-0 z-50 flex flex-col items-center justify-center gap-5 bg-espresso/60 backdrop-blur-sm">
+          <div className="flex flex-col items-center gap-4 rounded-card bg-white px-8 py-8 shadow-lifted">
+            <span className="relative flex h-14 w-14 items-center justify-center">
+              <span className="absolute h-14 w-14 animate-ping rounded-full bg-terracotta/25" />
+              <Sparkles className="h-8 w-8 animate-pulse text-terracotta" />
+            </span>
+            <p className="font-display text-lg font-semibold">
+              {t("schedule.generating")}
+            </p>
+            <p className="text-sm text-espresso-light" aria-live="polite">
+              {t(progressKeys[progressStep])}
+            </p>
+            <div className="flex gap-1.5">
+              {progressKeys.map((_, i) => (
+                <span
+                  key={i}
+                  className={`h-1.5 w-8 rounded-full transition-colors ${
+                    i <= progressStep ? "bg-terracotta" : "bg-espresso/10"
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="flex flex-wrap items-center gap-3">
-        <Button onClick={generate} disabled={generating || !canGenerate}>
+        <Button onClick={generate} disabled={busy || !canGenerate}>
           <Sparkles className="h-4 w-4" />
-          {generating
+          {busy
             ? t("schedule.generating")
             : schedule
               ? t("schedule.regenerate")

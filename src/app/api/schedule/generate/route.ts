@@ -10,7 +10,7 @@ import {
 } from "@/lib/scheduler";
 import type { ShiftTemplate, Waiter } from "@/lib/types";
 
-export const maxDuration = 60;
+export const maxDuration = 120;
 
 const SCHEDULER_SYSTEM_PROMPT = `You are a fair shift scheduler for a café. You receive JSON with:
 - weekStart (Monday, YYYY-MM-DD), openingDays (ISO weekdays 1=Mon..7=Sun)
@@ -25,7 +25,7 @@ Create the weekly schedule. Rules, in priority order:
 4. Distribute shifts so each waiter ends as close as possible to their target_shifts_per_week; spread any unavoidable deviation evenly.
 5. Prefer giving each waiter consecutive days off where possible.
 
-Return assignments for the whole week and a 1-2 sentence "notes" summary in Croatian explaining fairness decisions (e.g. who got more/fewer shifts than requested and why).`;
+Work fast and mechanically — no lengthy deliberation. Return assignments for the whole week and ONE short "notes" sentence in Croatian summarizing the fairness outcome (e.g. who got more/fewer shifts than requested and why).`;
 
 const OUTPUT_SCHEMA = {
   type: "object" as const,
@@ -58,12 +58,18 @@ async function generateWithClaude(
   if (!process.env.ANTHROPIC_API_KEY) return null;
   try {
     const client = new Anthropic();
+    // Thinking disabled + low effort: assignment is mechanical, and the server-side
+    // validator repairs any gaps — speed matters more than deliberation here.
     const response = await client.messages.create({
       model: "claude-sonnet-5",
-      max_tokens: 8000,
+      max_tokens: 4000,
+      thinking: { type: "disabled" },
       system: SCHEDULER_SYSTEM_PROMPT,
       messages: [{ role: "user", content: JSON.stringify(input) }],
-      output_config: { format: { type: "json_schema", schema: OUTPUT_SCHEMA } },
+      output_config: {
+        effort: "low",
+        format: { type: "json_schema", schema: OUTPUT_SCHEMA },
+      },
     });
     if (response.stop_reason === "refusal") return null;
     const text = response.content.find((b) => b.type === "text");
