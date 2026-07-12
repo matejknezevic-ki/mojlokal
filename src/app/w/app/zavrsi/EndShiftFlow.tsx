@@ -21,6 +21,8 @@ export function EndShiftFlow({
   const [checked, setChecked] = useState<Set<string>>(new Set());
   const [cash, setCash] = useState("");
   const [note, setNote] = useState("");
+  const [handoverNote, setHandoverNote] = useState("");
+  const [tip, setTip] = useState("");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [doneMs, setDoneMs] = useState<number | null>(null);
@@ -49,6 +51,8 @@ export function EndShiftFlow({
           cashAmount: cashValue,
           note: note.trim() || undefined,
           checkedItemIds: [...checked],
+          handoverNote: handoverNote.trim() || undefined,
+          tipAmount: tip.trim() ? Number(tip.replace(",", ".")) : undefined,
         }),
       });
       const data = await res.json();
@@ -188,6 +192,43 @@ export function EndShiftFlow({
           />
         </Card>
       </section>
+
+      {/* Optional: handover note + private tip */}
+      <Card className="space-y-3 p-4">
+        <div>
+          <p className="mb-1.5 text-sm font-semibold text-espresso-light">
+            {t("handover.inputLabel")}{" "}
+            <span className="font-normal text-espresso/40">({t("common.optional")})</span>
+          </p>
+          <input
+            type="text"
+            value={handoverNote}
+            onChange={(e) => setHandoverNote(e.target.value)}
+            placeholder={t("handover.placeholder")}
+            maxLength={300}
+            className="w-full rounded-xl border border-espresso/10 px-4 py-2.5 text-sm outline-none focus:border-terracotta"
+          />
+        </div>
+        <div>
+          <p className="mb-1.5 text-sm font-semibold text-espresso-light">
+            {t("endShift.tip")}{" "}
+            <span className="font-normal text-espresso/40">({t("common.optional")})</span>
+          </p>
+          <div className="relative">
+            <input
+              type="text"
+              inputMode="decimal"
+              value={tip}
+              onChange={(e) => setTip(e.target.value.replace(/[^\d.,]/g, ""))}
+              placeholder="0,00"
+              className="w-full rounded-xl border border-espresso/10 px-4 py-2.5 pr-8 text-right text-sm font-semibold tabular-nums outline-none focus:border-terracotta"
+            />
+            <span className="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-espresso/40">
+              €
+            </span>
+          </div>
+        </div>
+      </Card>
 
       {error && (
         <p className="rounded-xl bg-danger/10 px-4 py-3 text-sm font-medium text-danger">

@@ -12,11 +12,20 @@ export type SchedulerInput = {
   openingDays: number[];
   waiters: Pick<Waiter, "id" | "name" | "target_shifts_per_week" | "availability">[];
   templates: Pick<ShiftTemplate, "id" | "name" | "start_time" | "end_time">[];
+  /** approved time-off: waiter_id -> set of YYYY-MM-DD dates */
+  timeOff?: Record<string, string[]>;
 };
 
-function isAvailable(w: SchedulerInput["waiters"][number], weekday: number) {
+function isAvailable(
+  input: SchedulerInput,
+  w: SchedulerInput["waiters"][number],
+  weekday: number,
+  date: string
+) {
   // availability marks days the waiter can NOT work: {"1": false} = Mondays off
-  return w.availability?.[String(weekday)] !== false;
+  if (w.availability?.[String(weekday)] === false) return false;
+  if (input.timeOff?.[w.id]?.includes(date)) return false;
+  return true;
 }
 
 /** All open (date × template) slots of the week, chronologically. */
@@ -46,7 +55,7 @@ export function fallbackSchedule(input: SchedulerInput): Assignment[] {
   for (const slot of weekSlots(input)) {
     const busyToday = byDay.get(slot.date) ?? new Set<string>();
     const candidates = input.waiters
-      .filter((w) => isAvailable(w, slot.weekday) && !busyToday.has(w.id))
+      .filter((w) => isAvailable(input, w, slot.weekday, slot.date) && !busyToday.has(w.id))
       .sort((a, b) => {
         const defA = a.target_shifts_per_week - (counts.get(a.id) ?? 0);
         const defB = b.target_shifts_per_week - (counts.get(b.id) ?? 0);

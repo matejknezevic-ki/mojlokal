@@ -62,6 +62,7 @@ export async function updateWaiter(
     targetShifts?: number;
     active?: boolean;
     availability?: Record<string, boolean>;
+    hourlyRate?: number | null;
   }
 ) {
   const supabase = await ownerClient();
@@ -70,6 +71,11 @@ export async function updateWaiter(
     update.target_shifts_per_week = Math.max(0, Math.min(14, fields.targetShifts));
   if (fields.active !== undefined) update.active = fields.active;
   if (fields.availability !== undefined) update.availability = fields.availability;
+  if (fields.hourlyRate !== undefined)
+    update.hourly_rate =
+      fields.hourlyRate === null || !Number.isFinite(fields.hourlyRate)
+        ? null
+        : Math.max(0, Math.min(500, fields.hourlyRate));
   await supabase.from("waiters").update(update).eq("id", waiterId);
   revalidatePath("/admin/konobari");
 }
@@ -188,9 +194,54 @@ export async function updateShiftAssignment(shiftId: string, waiterId: string) {
 
 export async function publishSchedule(scheduleId: string) {
   const supabase = await ownerClient();
-  await supabase
+  const { data } = await supabase
     .from("schedules")
     .update({ status: "published" })
-    .eq("id", scheduleId);
+    .eq("id", scheduleId)
+    .select("venue_id")
+    .maybeSingle();
+  revalidatePath("/admin/raspored");
+  if (data?.venue_id) {
+    const { notifyVenueWaiters } = await import("@/lib/push");
+    await notifyVenueWaiters(data.venue_id, {
+      title: "mojlokal",
+      body: "Novi raspored smjena je objavljen! 📅",
+      url: "/w/app",
+    }).catch(() => {});
+  }
+}
+
+// --- Requests (time off + swaps) --------------------------------------------
+
+export async function resolveTimeOff(requestId: string, approve: boolean) {
+  const supabase = await ownerClient();
+  await supabase
+    .from("time_off_requests")
+    .update({ status: approve ? "approved" : "denied" })
+    .eq("id", requestId)
+    .eq("status", "pending");
+  revalidatePath("/admin/zahtjevi");
+}
+
+export async function resolveSwap(swapId: string, approve: boolean) {
+  const supabase = await ownerClient();
+  const { data: swap } = await supabase
+    .from("swap_requests")
+    .select("id, shift_id, to_waiter_id, status")
+    .eq("id", swapId)
+    .maybeSingle();
+  if (!swap || swap.status !== "accepted" || !swap.to_waiter_id) return;
+
+  if (approve) {
+    await supabase
+      .from("shifts")
+      .update({ waiter_id: swap.to_waiter_id })
+      .eq("id", swap.shift_id);
+  }
+  await supabase
+    .from("swap_requests")
+    .update({ status: approve ? "approved" : "rejected" })
+    .eq("id", swap.id);
+  revalidatePath("/admin/zahtjevi");
   revalidatePath("/admin/raspored");
 }

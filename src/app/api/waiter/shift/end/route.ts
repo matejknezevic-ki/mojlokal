@@ -45,6 +45,25 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: data?.error ?? "unknown" }, { status });
   }
 
+  // Optional extras recorded after the successful atomic close
+  const handoverNote =
+    typeof body?.handoverNote === "string" ? body.handoverNote.trim().slice(0, 300) : "";
+  if (handoverNote) {
+    await admin
+      .from("shift_sessions")
+      .update({ handover_note: handoverNote })
+      .eq("id", open.id);
+  }
+  const tip = Number(body?.tipAmount);
+  if (Number.isFinite(tip) && tip > 0 && tip <= 10000) {
+    await admin.from("tips").insert({
+      venue_id: session.venueId,
+      waiter_id: session.waiterId,
+      shift_session_id: open.id,
+      amount: tip,
+    });
+  }
+
   return NextResponse.json({
     ok: true,
     startedAt: data.started_at,

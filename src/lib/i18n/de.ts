@@ -261,4 +261,92 @@ export const de: Record<TKey, string> = {
   "week.prev": "Vorige Woche",
   "week.next": "Nächste Woche",
   "week.current": "Woche",
+
+  // Waiter bottom nav
+  "wnav.home": "Start",
+  "wnav.month": "Mein Monat",
+  "wnav.availability": "Verfügbarkeit",
+  "wnav.history": "Verlauf",
+
+  // Moj mjesec
+  "month.title": "Mein Monat",
+  "month.hours": "Geleistete Stunden",
+  "month.shifts": "Schichten",
+  "month.earnings": "Voraussichtlicher Verdienst",
+  "month.earningsHint": "Basierend auf dem vom Chef hinterlegten Stundenlohn.",
+  "month.noRate": "Der Chef hat deinen Stundenlohn noch nicht hinterlegt — bitte ihn, das nachzutragen.",
+  "month.tips": "Trinkgeld",
+  "month.tipsPrivate": "Dein Trinkgeld siehst nur du — der Chef hat keinen Zugriff.",
+  "month.addTip": "Trinkgeld eintragen",
+  "month.tipAdded": "Gespeichert!",
+  "month.badges": "Deine Erfolge",
+  "month.prevMonth": "Letzter Monat",
+
+  // Badges
+  "badge.first": "Erste Schicht",
+  "badge.s25": "25 Schichten",
+  "badge.s100": "100 Schichten",
+  "badge.h100": "100+ Stunden",
+  "badge.checklist": "Checkliste 100 %",
+  "badge.earlybird": "Frühaufsteher",
+
+  // Team
+  "team.today": "Heute arbeitet mit dir",
+  "team.todayNone": "Heute steht sonst niemand im Plan.",
+  "team.week": "Team diese Woche",
+
+  // Availability (waiter)
+  "avail.title": "Verfügbarkeit",
+  "avail.weekly": "Wöchentliche Verfügbarkeit",
+  "avail.weeklyHint": "Markiere Tage, an denen du NICHT arbeiten kannst — der Planer überspringt sie.",
+  "avail.timeoff": "Freie Tage",
+  "avail.timeoffHint": "Beantrage einen freien Tag. Der Chef muss ihn vor der Planerstellung genehmigen.",
+  "avail.request": "Freien Tag beantragen",
+  "avail.notePlaceholder": "Grund (optional)",
+  "avail.pending": "Wartet auf Genehmigung",
+  "avail.approved": "Genehmigt",
+  "avail.denied": "Abgelehnt",
+  "avail.saved": "Gespeichert.",
+  "avail.exists": "Für dieses Datum existiert bereits ein Antrag.",
+
+  // Swaps
+  "swap.offer": "Zum Tausch anbieten",
+  "swap.offered": "Angeboten — wartet auf Kollegen",
+  "swap.openOffers": "Freie Schichten von Kollegen",
+  "swap.take": "Schicht übernehmen",
+  "swap.pendingApproval": "Wartet auf den Chef",
+  "swap.cancel": "Angebot zurückziehen",
+  "swap.none": "Aktuell bietet niemand eine Schicht an.",
+  "swap.byYou": "dein Angebot",
+
+  // Calendar feed
+  "cal.button": "Schichten in Kalender übernehmen",
+  "cal.copied": "Link kopiert! Füge ihn in deiner Kalender-App als Kalender-Abo ein.",
+
+  // Handover
+  "handover.title": "Nachricht der letzten Schicht",
+  "handover.inputLabel": "Nachricht an die nächste Schicht",
+  "handover.placeholder": "z. B. Milch fast leer, morgen bestellen",
+
+  // Tip at shift end
+  "endShift.tip": "Trinkgeld heute (nur für dich sichtbar)",
+
+  // Push
+  "push.enable": "Benachrichtigungen aktivieren",
+  "push.enabled": "Benachrichtigungen sind aktiv",
+  "push.denied": "Benachrichtigungen sind im Browser blockiert.",
+  "push.unsupported": "Dieser Browser unterstützt keine Benachrichtigungen (auf dem iPhone zuerst die App zum Homescreen hinzufügen).",
+
+  // Admin: requests
+  "nav.requests": "Anträge",
+  "req.title": "Anträge",
+  "req.timeoff": "Freie Tage",
+  "req.swaps": "Schichttausch",
+  "req.approve": "Genehmigen",
+  "req.deny": "Ablehnen",
+  "req.none": "Keine offenen Anträge.",
+  "req.swapWants": "übernimmt Schicht von",
+
+  // Admin: hourly rate
+  "waiters.hourlyRate": "Stundenlohn (€/h)",
 };

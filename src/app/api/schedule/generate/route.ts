@@ -16,6 +16,7 @@ const SCHEDULER_SYSTEM_PROMPT = `You are a fair shift scheduler for a café. You
 - weekStart (Monday, YYYY-MM-DD), openingDays (ISO weekdays 1=Mon..7=Sun)
 - waiters: id, name, target_shifts_per_week, availability (a map where "3": false means the waiter can NOT work on weekday 3)
 - templates: shift templates with id, name, start_time, end_time
+- timeOff: approved days off, a map waiter_id -> ["YYYY-MM-DD", ...]; NEVER schedule a waiter on such a date
 
 Create the weekly schedule. Rules, in priority order:
 1. Every opening day × every template gets EXACTLY one waiter.
@@ -95,7 +96,11 @@ export async function POST(request: Request) {
     .maybeSingle();
   if (!venue) return NextResponse.json({ error: "no_venue" }, { status: 404 });
 
-  const [{ data: waiters }, { data: templates }] = await Promise.all([
+  const weekEnd = new Date(weekStart + "T12:00:00");
+  weekEnd.setDate(weekEnd.getDate() + 6);
+  const weekEndStr = weekEnd.toISOString().slice(0, 10);
+
+  const [{ data: waiters }, { data: templates }, { data: timeOffRows }] = await Promise.all([
     supabase.from("waiters").select("*").eq("venue_id", venue.id).eq("active", true),
     supabase
       .from("shift_templates")
@@ -103,10 +108,22 @@ export async function POST(request: Request) {
       .eq("venue_id", venue.id)
       .eq("active", true)
       .order("position"),
+    supabase
+      .from("time_off_requests")
+      .select("waiter_id, off_date")
+      .eq("venue_id", venue.id)
+      .eq("status", "approved")
+      .gte("off_date", weekStart)
+      .lte("off_date", weekEndStr),
   ]);
 
   if (!waiters?.length || !templates?.length) {
     return NextResponse.json({ error: "need_data" }, { status: 422 });
+  }
+
+  const timeOff: Record<string, string[]> = {};
+  for (const row of timeOffRows ?? []) {
+    (timeOff[row.waiter_id] ??= []).push(row.off_date);
   }
 
   const input: SchedulerInput = {
@@ -114,6 +131,7 @@ export async function POST(request: Request) {
     openingDays: venue.opening_days,
     waiters: waiters as Waiter[],
     templates: templates as ShiftTemplate[],
+    timeOff,
   };
 
   const aiResult = await generateWithClaude(input);

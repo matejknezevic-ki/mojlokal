@@ -259,6 +259,94 @@ export const hr = {
   "week.prev": "Prošli tjedan",
   "week.next": "Sljedeći tjedan",
   "week.current": "Tjedan",
+
+  // Waiter bottom nav
+  "wnav.home": "Početna",
+  "wnav.month": "Moj mjesec",
+  "wnav.availability": "Dostupnost",
+  "wnav.history": "Povijest",
+
+  // Moj mjesec
+  "month.title": "Moj mjesec",
+  "month.hours": "Odrađeni sati",
+  "month.shifts": "smjena",
+  "month.earnings": "Procijenjena zarada",
+  "month.earningsHint": "Prema satnici koju je postavio šef.",
+  "month.noRate": "Šef još nije postavio tvoju satnicu — zamoli ga da je doda.",
+  "month.tips": "Napojnice",
+  "month.tipsPrivate": "Napojnice vidiš samo ti — šef nema pristup.",
+  "month.addTip": "Upiši napojnicu",
+  "month.tipAdded": "Zabilježeno!",
+  "month.badges": "Tvoji uspjesi",
+  "month.prevMonth": "Prošli mjesec",
+
+  // Badges
+  "badge.first": "Prva smjena",
+  "badge.s25": "25 smjena",
+  "badge.s100": "100 smjena",
+  "badge.h100": "100+ sati",
+  "badge.checklist": "Checklista 100 %",
+  "badge.earlybird": "Ranoranilac",
+
+  // Team
+  "team.today": "Danas s tobom radi",
+  "team.todayNone": "Danas nema drugih u rasporedu.",
+  "team.week": "Tim ovaj tjedan",
+
+  // Availability (waiter)
+  "avail.title": "Dostupnost",
+  "avail.weekly": "Tjedna dostupnost",
+  "avail.weeklyHint": "Označi dane kada NE možeš raditi — planer ih preskače.",
+  "avail.timeoff": "Slobodni dani",
+  "avail.timeoffHint": "Zatraži slobodan dan. Šef ga mora odobriti prije izrade rasporeda.",
+  "avail.request": "Zatraži slobodan dan",
+  "avail.notePlaceholder": "Razlog (neobavezno)",
+  "avail.pending": "Čeka odobrenje",
+  "avail.approved": "Odobreno",
+  "avail.denied": "Odbijeno",
+  "avail.saved": "Spremljeno.",
+  "avail.exists": "Za taj datum već postoji zahtjev.",
+
+  // Swaps
+  "swap.offer": "Ponudi zamjenu",
+  "swap.offered": "Ponuđeno — čeka kolegu",
+  "swap.openOffers": "Slobodne smjene kolega",
+  "swap.take": "Preuzmi smjenu",
+  "swap.pendingApproval": "Čeka odobrenje šefa",
+  "swap.cancel": "Povuci ponudu",
+  "swap.none": "Trenutno nitko ne nudi zamjenu.",
+  "swap.byYou": "tvoja ponuda",
+
+  // Calendar feed
+  "cal.button": "Dodaj smjene u kalendar",
+  "cal.copied": "Link kopiran! Zalijepi ga u svoju kalendarsku aplikaciju (pretplata na kalendar).",
+
+  // Handover
+  "handover.title": "Poruka prethodne smjene",
+  "handover.inputLabel": "Poruka za sljedeću smjenu",
+  "handover.placeholder": "npr. Mlijeko je pri kraju, naruči sutra",
+
+  // Tip at shift end
+  "endShift.tip": "Napojnica danas (vidiš samo ti)",
+
+  // Push
+  "push.enable": "Uključi obavijesti",
+  "push.enabled": "Obavijesti su uključene",
+  "push.denied": "Obavijesti su blokirane u pregledniku.",
+  "push.unsupported": "Ovaj preglednik ne podržava obavijesti (na iPhoneu prvo dodaj aplikaciju na početni zaslon).",
+
+  // Admin: requests
+  "nav.requests": "Zahtjevi",
+  "req.title": "Zahtjevi",
+  "req.timeoff": "Slobodni dani",
+  "req.swaps": "Zamjene smjena",
+  "req.approve": "Odobri",
+  "req.deny": "Odbij",
+  "req.none": "Nema otvorenih zahtjeva.",
+  "req.swapWants": "preuzima smjenu od",
+
+  // Admin: hourly rate
+  "waiters.hourlyRate": "Satnica (€/h)",
 } as const;
 
 export type TKey = keyof typeof hr;

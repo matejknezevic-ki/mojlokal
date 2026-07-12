@@ -94,7 +94,7 @@ export function WaitersManager({
                       </span>
                     )}
                   </p>
-                  <div className="mt-1 flex items-center gap-2 text-sm text-espresso-light">
+                  <div className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-espresso-light">
                     <Input
                       type="number"
                       min={0}
@@ -112,6 +112,25 @@ export function WaitersManager({
                       className="w-16 py-1.5 text-center"
                     />
                     <span>{t("waiters.targetShifts")}</span>
+                    <Input
+                      type="number"
+                      min={0}
+                      max={500}
+                      step={0.5}
+                      defaultValue={w.hourly_rate ?? ""}
+                      onBlur={(e) => {
+                        const raw = e.target.value.trim();
+                        const v = raw === "" ? null : Number(raw);
+                        if (v !== (w.hourly_rate ?? null)) {
+                          startTransition(async () => {
+                            await updateWaiter(w.id, { hourlyRate: v });
+                            router.refresh();
+                          });
+                        }
+                      }}
+                      className="ml-1 w-20 py-1.5 text-center"
+                    />
+                    <span>{t("waiters.hourlyRate")}</span>
                   </div>
                 </div>
                 <div className="flex flex-wrap items-center gap-2">

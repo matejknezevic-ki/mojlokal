@@ -11,12 +11,14 @@ import {
   Wallet,
   Timer,
   Settings,
+  Inbox,
 } from "lucide-react";
 import { useT } from "@/lib/i18n/client";
 
 const items = [
   { href: "/admin", icon: LayoutDashboard, key: "nav.dashboard" },
   { href: "/admin/raspored", icon: CalendarDays, key: "nav.schedule" },
+  { href: "/admin/zahtjevi", icon: Inbox, key: "nav.requests" },
   { href: "/admin/konobari", icon: Users, key: "nav.waiters" },
   { href: "/admin/smjene", icon: Clock3, key: "nav.shifts" },
   { href: "/admin/checklista", icon: ListChecks, key: "nav.checklist" },
@@ -27,7 +29,7 @@ const items = [
 
 // Bottom tab bar on mobile shows the 5 most-used destinations; the sidebar
 // on desktop shows everything.
-const mobileItems = [items[0], items[1], items[2], items[5], items[7]];
+const mobileItems = [items[0], items[1], items[2], items[3], items[8]];
 
 export function AdminSidebar() {
   const pathname = usePathname();
