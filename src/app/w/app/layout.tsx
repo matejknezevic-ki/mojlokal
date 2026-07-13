@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { Coffee, LayoutDashboard, UserRound } from "lucide-react";
+import { Coffee, LayoutDashboard, LogOut } from "lucide-react";
 import { getWaiterSession } from "@/lib/waiter-auth";
 import { createClient } from "@/lib/supabase/server";
 import { getT } from "@/lib/i18n";
@@ -61,8 +61,8 @@ export default async function WaiterAppLayout({
             </Link>
           )}
           <LocaleToggle />
-          <WaiterLogoutButton label={t("waiter.switchUser")} slug={session.venueSlug}>
-            <UserRound className="h-5 w-5" />
+          <WaiterLogoutButton label={t("common.logout")} slug={session.venueSlug}>
+            <LogOut className="h-5 w-5" />
           </WaiterLogoutButton>
         </div>
       </header>

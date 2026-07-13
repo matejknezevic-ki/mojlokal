@@ -1,9 +1,9 @@
 import Link from "next/link";
-import { Coffee, UserRound } from "lucide-react";
+import { Coffee, LogOut, UserRound } from "lucide-react";
 import { requireOwnerVenue } from "@/lib/owner";
 import { LocaleToggle } from "@/components/LocaleToggle";
 import { AdminBottomBar, AdminSidebar } from "@/components/AdminNav";
-import { switchToWaiterMode } from "./actions";
+import { signOut, switchToWaiterMode } from "./actions";
 
 export default async function AdminLayout({
   children,
@@ -44,6 +44,16 @@ export default async function AdminLayout({
               </button>
             </form>
             <LocaleToggle />
+            <form action={signOut}>
+              <button
+                type="submit"
+                className="inline-flex items-center gap-1.5 rounded-xl p-2 text-espresso-light hover:bg-espresso/5"
+                aria-label={t("common.logout")}
+                title={t("common.logout")}
+              >
+                <LogOut className="h-4 w-4" />
+              </button>
+            </form>
           </div>
         </div>
       </header>
