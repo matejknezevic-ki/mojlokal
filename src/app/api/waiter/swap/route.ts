@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { getWaiterSession } from "@/lib/waiter-auth";
+import { notifyVenueWaiters, notifyWaiter } from "@/lib/push";
+
+const fmt = (d: string) => `${d.slice(8, 10)}.${d.slice(5, 7)}.`;
 
 // Shift swap flow: offer own shift → colleague takes it → owner approves (admin).
 export async function POST(request: Request) {
@@ -37,6 +40,15 @@ export async function POST(request: Request) {
       from_waiter_id: session.waiterId,
     });
     if (error) return NextResponse.json({ error: "db" }, { status: 500 });
+    await notifyVenueWaiters(
+      session.venueId,
+      {
+        title: "mojlokal",
+        body: `${session.name} nudi smjenu ${fmt(shift.shift_date)} — otvori raspored 🔄`,
+        url: "/w/app/raspored",
+      },
+      { excludeWaiterId: session.waiterId }
+    ).catch(() => {});
     return NextResponse.json({ ok: true });
   }
 
@@ -73,6 +85,11 @@ export async function POST(request: Request) {
       status: "accepted",
     });
     if (error) return NextResponse.json({ error: "db" }, { status: 500 });
+    await notifyWaiter(shift.waiter_id, {
+      title: "mojlokal",
+      body: `${session.name} želi preuzeti tvoju smjenu ${fmt(shift.shift_date)} — šef odlučuje`,
+      url: "/w/app/raspored",
+    }).catch(() => {});
     return NextResponse.json({ ok: true });
   }
 

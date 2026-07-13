@@ -17,6 +17,21 @@ export function LoginForm() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  const [forgot, setForgot] = useState(false);
+  const [resetSent, setResetSent] = useState(false);
+
+  async function sendReset(e: React.FormEvent) {
+    e.preventDefault();
+    setBusy(true);
+    setError(null);
+    const supabase = createClient();
+    await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: `${window.location.origin}/reset-lozinke`,
+    });
+    // Always confirm — never reveal whether the address exists.
+    setResetSent(true);
+    setBusy(false);
+  }
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
@@ -55,6 +70,46 @@ export function LoginForm() {
     }
     router.push("/admin");
     router.refresh();
+  }
+
+  if (forgot) {
+    return (
+      <Card className="p-6">
+        <h2 className="font-display text-lg font-semibold">{t("auth.resetEmailTitle")}</h2>
+        <p className="mb-4 mt-1 text-sm text-espresso-light">{t("auth.resetEmailHint")}</p>
+        {resetSent ? (
+          <p className="rounded-xl bg-success-light px-4 py-3 text-sm font-semibold text-success">
+            {t("auth.resetSent")}
+          </p>
+        ) : (
+          <form onSubmit={sendReset} className="space-y-4">
+            <div>
+              <Label htmlFor="resetEmail">{t("auth.email")}</Label>
+              <Input
+                id="resetEmail"
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <Button type="submit" size="lg" disabled={busy} className="w-full">
+              {busy ? t("common.loading") : t("auth.resetSend")}
+            </Button>
+          </form>
+        )}
+        <button
+          type="button"
+          onClick={() => {
+            setForgot(false);
+            setResetSent(false);
+          }}
+          className="mt-4 text-sm font-semibold text-espresso-light underline-offset-4 hover:underline"
+        >
+          {t("common.back")}
+        </button>
+      </Card>
+    );
   }
 
   return (
@@ -117,6 +172,16 @@ export function LoginForm() {
               ? t("auth.loginButton")
               : t("auth.registerButton")}
         </Button>
+
+        {mode === "login" && (
+          <button
+            type="button"
+            onClick={() => setForgot(true)}
+            className="block w-full text-center text-sm font-semibold text-espresso-light underline-offset-4 hover:underline"
+          >
+            {t("auth.forgot")}
+          </button>
+        )}
       </form>
     </Card>
   );

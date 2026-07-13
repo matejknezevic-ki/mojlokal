@@ -167,7 +167,17 @@ export default async function LandingPage() {
       </main>
 
       <footer className="border-t border-espresso/10 py-6 text-center text-xs text-espresso/50">
-        {t("landing.footer")} · © {new Date().getFullYear()}
+        <p>
+          {t("landing.footer")} · © {new Date().getFullYear()}
+        </p>
+        <p className="mt-2 space-x-4">
+          <Link href="/impressum" className="underline underline-offset-4 hover:text-espresso">
+            {t("landing.imprint")}
+          </Link>
+          <Link href="/privatnost" className="underline underline-offset-4 hover:text-espresso">
+            {t("landing.privacy")}
+          </Link>
+        </p>
       </footer>
     </div>
   );

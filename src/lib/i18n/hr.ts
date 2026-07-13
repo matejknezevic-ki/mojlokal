@@ -43,6 +43,8 @@ export const hr = {
   "landing.demoShift": "Jutarnja smjena · 06:00 – 14:00",
   "landing.demoHello": "Bok, Ivana",
   "landing.footer": "mojlokal — aplikacija za vođenje kafića",
+  "landing.imprint": "Impressum",
+  "landing.privacy": "Privatnost",
 
   // Auth (owner)
   "auth.loginTitle": "Prijava za vlasnike",
@@ -57,6 +59,16 @@ export const hr = {
   "auth.registerError": "Registracija nije uspjela. Pokušaj ponovno.",
   "auth.emailTaken": "Račun s tim e-mailom već postoji.",
   "auth.waiterLink": "Ti si konobar? Prijavi se ovdje",
+  "auth.forgot": "Zaboravljena lozinka?",
+  "auth.resetEmailTitle": "Vrati pristup računu",
+  "auth.resetEmailHint": "Upiši e-mail — poslat ćemo ti link za novu lozinku.",
+  "auth.resetSend": "Pošalji link",
+  "auth.resetSent": "Poslano! Provjeri e-mail (i spam).",
+  "auth.resetTitle": "Nova lozinka",
+  "auth.newPassword": "Nova lozinka (min. 8 znakova)",
+  "auth.resetButton": "Spremi novu lozinku",
+  "auth.resetSuccess": "Lozinka promijenjena — preusmjeravam…",
+  "auth.resetInvalid": "Link je istekao ili nije važeći. Zatraži novi.",
 
   // Onboarding
   "onboarding.title": "Postavimo tvoj lokal",

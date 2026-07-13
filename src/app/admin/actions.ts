@@ -215,19 +215,33 @@ export async function publishSchedule(scheduleId: string) {
 
 export async function resolveTimeOff(requestId: string, approve: boolean) {
   const supabase = await ownerClient();
-  await supabase
+  const { data } = await supabase
     .from("time_off_requests")
     .update({ status: approve ? "approved" : "denied" })
     .eq("id", requestId)
-    .eq("status", "pending");
+    .eq("status", "pending")
+    .select("waiter_id, off_date")
+    .maybeSingle();
   revalidatePath("/admin/zahtjevi");
+
+  if (data) {
+    const { notifyWaiter } = await import("@/lib/push");
+    const d = `${data.off_date.slice(8, 10)}.${data.off_date.slice(5, 7)}.`;
+    await notifyWaiter(data.waiter_id, {
+      title: "mojlokal",
+      body: approve
+        ? `Slobodan dan ${d} je odobren ✅`
+        : `Zahtjev za slobodan dan ${d} je odbijen`,
+      url: "/w/app/dostupnost",
+    }).catch(() => {});
+  }
 }
 
 export async function resolveSwap(swapId: string, approve: boolean) {
   const supabase = await ownerClient();
   const { data: swap } = await supabase
     .from("swap_requests")
-    .select("id, shift_id, to_waiter_id, status")
+    .select("id, shift_id, from_waiter_id, to_waiter_id, status, shifts!inner(shift_date, start_time)")
     .eq("id", swapId)
     .maybeSingle();
   if (!swap || swap.status !== "accepted" || !swap.to_waiter_id) return;
@@ -244,4 +258,29 @@ export async function resolveSwap(swapId: string, approve: boolean) {
     .eq("id", swap.id);
   revalidatePath("/admin/zahtjevi");
   revalidatePath("/admin/raspored");
+
+  const { notifyWaiter } = await import("@/lib/push");
+  const shift = swap.shifts as unknown as { shift_date: string; start_time: string };
+  const d = `${shift.shift_date.slice(8, 10)}.${shift.shift_date.slice(5, 7)}.`;
+  const url = "/w/app/raspored";
+  if (approve) {
+    await Promise.allSettled([
+      notifyWaiter(swap.to_waiter_id, {
+        title: "mojlokal",
+        body: `Zamjena odobrena — smjena ${d} je tvoja ✅`,
+        url,
+      }),
+      notifyWaiter(swap.from_waiter_id, {
+        title: "mojlokal",
+        body: `Zamjena odobrena — smjenu ${d} preuzima kolega ✅`,
+        url,
+      }),
+    ]);
+  } else {
+    await notifyWaiter(swap.to_waiter_id, {
+      title: "mojlokal",
+      body: `Zamjena za ${d} je odbijena`,
+      url,
+    }).catch(() => {});
+  }
 }

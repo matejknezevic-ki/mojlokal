@@ -45,6 +45,8 @@ export const de: Record<TKey, string> = {
   "landing.demoShift": "Frühschicht · 06:00 – 14:00",
   "landing.demoHello": "Hallo, Ivana",
   "landing.footer": "mojlokal — die App für dein Lokal",
+  "landing.imprint": "Impressum",
+  "landing.privacy": "Datenschutz",
 
   // Auth (owner)
   "auth.loginTitle": "Anmeldung für Inhaber",
@@ -59,6 +61,16 @@ export const de: Record<TKey, string> = {
   "auth.registerError": "Registrierung fehlgeschlagen. Bitte erneut versuchen.",
   "auth.emailTaken": "Ein Konto mit dieser E-Mail existiert bereits.",
   "auth.waiterLink": "Du bist Kellner? Hier anmelden",
+  "auth.forgot": "Passwort vergessen?",
+  "auth.resetEmailTitle": "Zugang wiederherstellen",
+  "auth.resetEmailHint": "E-Mail eingeben — wir senden dir einen Link für ein neues Passwort.",
+  "auth.resetSend": "Link senden",
+  "auth.resetSent": "Gesendet! Prüfe dein Postfach (auch Spam).",
+  "auth.resetTitle": "Neues Passwort",
+  "auth.newPassword": "Neues Passwort (min. 8 Zeichen)",
+  "auth.resetButton": "Neues Passwort speichern",
+  "auth.resetSuccess": "Passwort geändert — leite weiter…",
+  "auth.resetInvalid": "Der Link ist abgelaufen oder ungültig. Fordere einen neuen an.",
 
   // Onboarding
   "onboarding.title": "Richten wir dein Lokal ein",
