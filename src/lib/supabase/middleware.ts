@@ -25,8 +25,12 @@ export async function updateSession(request: NextRequest) {
     }
   );
 
-  // Refresh the auth token if needed; guards live in the layouts.
-  await supabase.auth.getUser();
+  // Only refresh the token here — the actual auth guards run in the layouts
+  // (requireOwnerVenue → getUser). getSession() reads the token from the cookie
+  // locally and only hits the network when it genuinely needs refreshing, so a
+  // normal tab switch with a valid token costs zero round trips instead of a
+  // full transatlantic getUser() validation on every navigation.
+  await supabase.auth.getSession();
 
   return supabaseResponse;
 }
