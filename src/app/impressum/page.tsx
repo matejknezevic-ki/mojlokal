@@ -1,8 +1,7 @@
 import Link from "next/link";
 import { Coffee } from "lucide-react";
 
-// HINWEIS: Platzhalter in [KLAMMERN] mit echten Firmendaten ersetzen und
-// rechtlich prüfen lassen, bevor zahlende Kunden onboarden.
+// HINWEIS: Angaben vor dem Onboarding zahlender Kunden rechtlich prüfen lassen.
 export default function ImprintPage() {
   return (
     <div className="mx-auto w-full max-w-2xl px-5 py-10">
@@ -19,22 +18,22 @@ export default function ImprintPage() {
             Pružatelj usluge / Anbieter
           </h2>
           <p>
-            [IME I PREZIME / NAZIV TVRTKE]
+            MK KI Services e.U.
             <br />
-            [ADRESA]
+            Sperlingstraße 10
             <br />
-            [POŠTANSKI BROJ, MJESTO]
+            4540 Bad Hall
             <br />
-            [DRŽAVA]
+            Austrija
           </p>
         </section>
 
         <section>
           <h2 className="font-display text-lg font-semibold text-espresso">Kontakt</h2>
           <p>
-            E-mail: [E-MAIL ADRESA]
+            E-mail: matej@mk-ki.at
             <br />
-            Telefon: [TELEFONSKI BROJ]
+            Telefon: +43 664 2549121
           </p>
         </section>
 
@@ -43,7 +42,7 @@ export default function ImprintPage() {
             Registracija / UID
           </h2>
           <p>
-            [OIB / UID-BROJ / OBRTNI REGISTAR — po potrebi]
+            UID: ATU83129838
           </p>
         </section>
 

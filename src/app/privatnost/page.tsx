@@ -22,7 +22,8 @@ export default function PrivacyPage() {
             1. Voditelj obrade
           </h2>
           <p>
-            [IME / NAZIV TVRTKE], [ADRESA], e-mail: [E-MAIL]. Za sva pitanja o
+            MK KI Services e.U., Sperlingstraße 10, 4540 Bad Hall, Austrija,
+            e-mail: matej@mk-ki.at. Za sva pitanja o
             zaštiti podataka obratite nam se na navedenu adresu.
           </p>
         </section>
@@ -97,7 +98,7 @@ export default function PrivacyPage() {
           <p>
             Podatke čuvamo dok postoji korisnički račun. Brisanjem računa brišu se
             svi podaci lokala, uključujući konobare, smjene i evidencije. Zahtjev za
-            brisanje možete poslati na [E-MAIL].
+            brisanje možete poslati na matej@mk-ki.at.
           </p>
         </section>
 
