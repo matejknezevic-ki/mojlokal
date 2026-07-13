@@ -79,6 +79,9 @@ export default async function LandingPage() {
                 {t("auth.waiterLink")}
               </Link>
             </div>
+            <p className="mt-3 text-sm font-semibold text-sage-dark">
+              {t("landing.trialNote")}
+            </p>
           </div>
 
           {/* Phone mockup */}

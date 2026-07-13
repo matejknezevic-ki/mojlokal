@@ -8,6 +8,10 @@ export type Venue = {
   default_locale: "hr" | "de";
   currency: string;
   onboarded_at: string | null;
+  trial_ends_at: string;
+  subscription_status: "trial" | "active" | "blocked" | "free";
+  early_bird: boolean;
+  discount_code: string | null;
   created_at: string;
 };
 
@@ -20,6 +24,7 @@ export type Waiter = {
   active: boolean;
   hourly_rate: number | null;
   calendar_token: string;
+  is_owner: boolean;
   created_at: string;
 };
 

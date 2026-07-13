@@ -29,6 +29,7 @@ export function StartShiftButton({
   const t = useT();
   const router = useRouter();
   const [busy, setBusy] = useState(false);
+  const [expired, setExpired] = useState(false);
   const elapsed = useElapsed(openSession?.startedAt ?? null);
 
   async function start() {
@@ -36,9 +37,18 @@ export function StartShiftButton({
     try {
       const res = await fetch("/api/waiter/shift/start", { method: "POST" });
       if (res.ok) router.refresh();
+      else if (res.status === 402) setExpired(true);
     } finally {
       setBusy(false);
     }
+  }
+
+  if (expired) {
+    return (
+      <div className="rounded-card bg-danger/10 p-5 text-center">
+        <p className="font-semibold text-danger">{t("waiter.subExpired")}</p>
+      </div>
+    );
   }
 
   if (openSession) {

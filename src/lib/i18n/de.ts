@@ -27,6 +27,7 @@ export const de: Record<TKey, string> = {
   "landing.heroSubtitle":
     "mojlokal ist die einfache App für Cafés und Bars: KI-Schichtplan, Arbeitszeiterfassung und Kassastand am Ende jeder Schicht.",
   "landing.cta": "Kostenlos ausprobieren",
+  "landing.trialNote": "5 Tage gratis — ohne Kreditkarte",
   "landing.ctaLogin": "Anmelden",
   "landing.feature1Title": "KI-Schichtplan",
   "landing.feature1Text":
@@ -271,6 +272,33 @@ export const de: Record<TKey, string> = {
   "day.short.5": "Fr",
   "day.short.6": "Sa",
   "day.short.7": "So",
+
+  // Subscription / trial
+  "trial.left": "Testphase: noch",
+  "trial.days": "Tage",
+  "trial.details": "Details",
+  "sub.title": "Abo",
+  "sub.expiredTitle": "Die Testphase ist abgelaufen",
+  "sub.expiredText":
+    "Wir hoffen, mojlokal hat dir gefallen! Aktiviere das Abo, um weiterzumachen — alle deine Daten bleiben erhalten.",
+  "sub.perMonth": "monatlich pro Lokal",
+  "sub.oneTime": "einmalige Einrichtung",
+  "sub.monthly": "monatlich",
+  "sub.earlyBird": "Rabatt für die ersten 20 Lokale aktiviert 🎉",
+  "sub.earlyMonthlyNote": "im ersten Jahr — danach regulärer Preis",
+  "sub.codeLabel": "Hast du einen Rabattcode?",
+  "sub.codePlaceholder": "Code eingeben",
+  "sub.codeApply": "Einlösen",
+  "sub.codeInvalid": "Der Code ist ungültig oder bereits ausgeschöpft.",
+  "sub.freeTitle": "Kostenloser Zugang",
+  "sub.activate": "Abo aktivieren",
+  "sub.contactHint": "Melde dich per E-Mail — wir schalten dich sofort nach Zahlungseingang frei.",
+  "sub.activeTitle": "Abo ist aktiv",
+  "sub.trialInfo": "Nach der Testphase kostet das Abo",
+  "sub.backToApp": "Zurück zur App",
+  "mode.workAsWaiter": "Als Kellner arbeiten",
+  "mode.backToAdmin": "Admin",
+  "waiter.subExpired": "Die Testphase des Lokals ist abgelaufen — bitte den Chef, das Abo zu aktivieren.",
 
   // Week nav
   "week.prev": "Vorige Woche",

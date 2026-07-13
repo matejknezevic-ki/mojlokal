@@ -184,6 +184,67 @@ export async function signOut() {
   redirect("/login");
 }
 
+// --- Owner works as waiter ---------------------------------------------------
+
+// Switches the owner into worker mode: finds (or creates) his flagged waiter
+// row, signs a regular waiter session cookie and jumps to the waiter app.
+// The Supabase owner session stays untouched, so switching back is just /admin.
+export async function switchToWaiterMode() {
+  const supabase = await ownerClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  const { data: venue } = await supabase
+    .from("venues")
+    .select("id, slug, owner_name")
+    .eq("owner_id", user!.id)
+    .single();
+  if (!venue) redirect("/onboarding");
+
+  let { data: ownerWaiter } = await supabase
+    .from("waiters")
+    .select("id, name")
+    .eq("venue_id", venue.id)
+    .eq("is_owner", true)
+    .maybeSingle();
+
+  if (!ownerWaiter) {
+    const bcrypt = (await import("bcryptjs")).default;
+    const { generatePin } = await import("@/lib/utils");
+    const baseName = venue.owner_name?.trim() || "Šef";
+    for (const name of [baseName, `${baseName} (šef)`]) {
+      const { data, error } = await supabase
+        .from("waiters")
+        .insert({
+          venue_id: venue.id,
+          name,
+          pin_hash: bcrypt.hashSync(generatePin(), 10),
+          is_owner: true,
+        })
+        .select("id, name")
+        .single();
+      if (!error && data) {
+        ownerWaiter = data;
+        break;
+      }
+    }
+    if (!ownerWaiter) throw new Error("owner_waiter_failed");
+  }
+
+  const { signWaiterSession, waiterCookieOptions, WAITER_COOKIE } = await import(
+    "@/lib/waiter-auth"
+  );
+  const token = await signWaiterSession({
+    waiterId: ownerWaiter.id,
+    venueId: venue.id,
+    venueSlug: venue.slug,
+    name: ownerWaiter.name,
+  });
+  const { cookies } = await import("next/headers");
+  (await cookies()).set(WAITER_COOKIE, token, waiterCookieOptions());
+  redirect("/w/app");
+}
+
 // --- Schedule ----------------------------------------------------------------
 
 export async function updateShiftAssignment(shiftId: string, waiterId: string) {

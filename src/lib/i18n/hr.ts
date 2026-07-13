@@ -25,6 +25,7 @@ export const hr = {
   "landing.heroSubtitle":
     "mojlokal je jednostavna aplikacija za kafiće i barove: AI raspored smjena, evidencija radnog vremena i stanje blagajne na kraju svake smjene.",
   "landing.cta": "Isprobaj besplatno",
+  "landing.trialNote": "5 dana besplatno — bez kartice",
   "landing.ctaLogin": "Prijava",
   "landing.feature1Title": "AI raspored smjena",
   "landing.feature1Text":
@@ -269,6 +270,33 @@ export const hr = {
   "day.short.5": "Pet",
   "day.short.6": "Sub",
   "day.short.7": "Ned",
+
+  // Subscription / trial
+  "trial.left": "Probni period: još",
+  "trial.days": "dana",
+  "trial.details": "Detalji",
+  "sub.title": "Pretplata",
+  "sub.expiredTitle": "Probni period je istekao",
+  "sub.expiredText":
+    "Nadamo se da ti se mojlokal svidio! Za nastavak korištenja aktiviraj pretplatu — svi tvoji podaci ostaju sačuvani.",
+  "sub.perMonth": "mjesečno po lokalu",
+  "sub.oneTime": "jednokratno postavljanje",
+  "sub.monthly": "mjesečno",
+  "sub.earlyBird": "Popust za prvih 20 lokala aktiviran 🎉",
+  "sub.earlyMonthlyNote": "prva godina — zatim redovna cijena",
+  "sub.codeLabel": "Imaš kod za popust?",
+  "sub.codePlaceholder": "Upiši kod",
+  "sub.codeApply": "Iskoristi",
+  "sub.codeInvalid": "Kod nije važeći ili je već iskorišten.",
+  "sub.freeTitle": "Besplatan pristup",
+  "sub.activate": "Aktiviraj pretplatu",
+  "sub.contactHint": "Javi nam se e-mailom — pretplatu aktiviramo odmah nakon uplate.",
+  "sub.activeTitle": "Pretplata je aktivna",
+  "sub.trialInfo": "Nakon probnog razdoblja pretplata iznosi",
+  "sub.backToApp": "Natrag u aplikaciju",
+  "mode.workAsWaiter": "Radi kao konobar",
+  "mode.backToAdmin": "Admin",
+  "waiter.subExpired": "Probni period lokala je istekao — javi se šefu da aktivira pretplatu.",
 
   // Week nav
   "week.prev": "Prošli tjedan",

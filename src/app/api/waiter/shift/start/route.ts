@@ -1,12 +1,23 @@
 import { NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { getWaiterSession } from "@/lib/waiter-auth";
+import { subscriptionState } from "@/lib/billing";
 
 export async function POST() {
   const session = await getWaiterSession();
   if (!session) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
 
   const admin = createAdminClient();
+
+  // Expired venue subscription blocks new shifts.
+  const { data: venue } = await admin
+    .from("venues")
+    .select("subscription_status, trial_ends_at")
+    .eq("id", session.venueId)
+    .single();
+  if (!venue || subscriptionState(venue).status === "expired") {
+    return NextResponse.json({ error: "subscription_expired" }, { status: 402 });
+  }
 
   // Refuse a second open session for the same waiter.
   const { data: open } = await admin
