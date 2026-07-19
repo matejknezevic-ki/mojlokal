@@ -15,12 +15,19 @@ import { Card } from "@/components/ui";
 import { LocaleToggle } from "@/components/LocaleToggle";
 import type { Venue } from "@/lib/types";
 import { DiscountCodeForm } from "./DiscountCodeForm";
+import { CheckoutButtons } from "./CheckoutButtons";
+import { stripeConfigured } from "@/lib/stripe";
 
 const eur = (n: number) =>
   n.toLocaleString("hr-HR", { minimumFractionDigits: n % 1 ? 2 : 0 }) + " €";
 
 // Paywall page — deliberately outside /admin so it stays reachable after expiry.
-export default async function SubscriptionPage() {
+export default async function SubscriptionPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ stripe?: string }>;
+}) {
+  const { stripe: stripeResult } = await searchParams;
   const supabase = await createClient();
   const {
     data: { user },
@@ -117,15 +124,35 @@ export default async function SubscriptionPage() {
 
             {!early && <DiscountCodeForm />}
 
-            <a
-              href={`mailto:${BILLING_CONTACT_EMAIL}?subject=${mailSubject}`}
-              className="mt-6 flex min-h-[56px] w-full items-center justify-center gap-2 rounded-xl bg-terracotta font-display text-lg font-bold text-white shadow-lifted active:scale-[0.98]"
-            >
-              <Mail className="h-5 w-5" /> {t("sub.activate")}
-            </a>
-            <p className="mt-3 text-center text-xs text-espresso/50">
-              {t("sub.contactHint")}
-            </p>
+            {stripeResult === "success" && (
+              <p className="mt-5 rounded-xl bg-success-light px-4 py-3 text-center text-sm font-semibold text-success">
+                {t("sub.paySuccess")}
+              </p>
+            )}
+
+            {stripeConfigured() ? (
+              <>
+                <CheckoutButtons />
+                <a
+                  href={`mailto:${BILLING_CONTACT_EMAIL}?subject=${mailSubject}`}
+                  className="mt-4 flex items-center justify-center gap-1.5 text-sm font-semibold text-espresso-light underline-offset-4 hover:underline"
+                >
+                  <Mail className="h-4 w-4" /> {t("sub.orContact")}
+                </a>
+              </>
+            ) : (
+              <>
+                <a
+                  href={`mailto:${BILLING_CONTACT_EMAIL}?subject=${mailSubject}`}
+                  className="mt-6 flex min-h-[56px] w-full items-center justify-center gap-2 rounded-xl bg-terracotta font-display text-lg font-bold text-white shadow-lifted active:scale-[0.98]"
+                >
+                  <Mail className="h-5 w-5" /> {t("sub.activate")}
+                </a>
+                <p className="mt-3 text-center text-xs text-espresso/50">
+                  {t("sub.contactHint")}
+                </p>
+              </>
+            )}
 
             {state.status === "trial" && (
               <Link
