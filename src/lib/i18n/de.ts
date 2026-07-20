@@ -82,6 +82,8 @@ export const de: Record<TKey, string> = {
   "onboarding.venueNamePlaceholder": "z. B. Caffe bar Riva",
   "onboarding.ownerName": "Dein Name",
   "onboarding.ownerNamePlaceholder": "z. B. Marko",
+  "onboarding.city": "Stadt / Ort",
+  "onboarding.cityPlaceholder": "z. B. Split",
   "onboarding.waitersTitle": "Deine Kellner",
   "onboarding.waitersSubtitle":
     "Füge Kellner hinzu und lege fest, wie viele Schichten pro Woche jeder arbeitet. Die PINs bekommst du am Ende.",

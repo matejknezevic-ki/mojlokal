@@ -80,6 +80,8 @@ export const hr = {
   "onboarding.venueNamePlaceholder": "npr. Caffe bar Riva",
   "onboarding.ownerName": "Tvoje ime",
   "onboarding.ownerNamePlaceholder": "npr. Marko",
+  "onboarding.city": "Grad / mjesto",
+  "onboarding.cityPlaceholder": "npr. Split",
   "onboarding.waitersTitle": "Tvoji konobari",
   "onboarding.waitersSubtitle":
     "Dodaj konobare i koliko smjena tjedno svaki radi. PIN-ove ćeš dobiti na kraju.",

@@ -42,6 +42,8 @@ export default async function SuperAdminPage() {
       id: v.id,
       name: v.name,
       slug: v.slug,
+      city: v.city,
+      ownerName: v.owner_name,
       ownerEmail: emailByOwner.get(v.owner_id) ?? "?",
       createdAt: v.created_at,
       status: v.subscription_status,
@@ -52,14 +54,40 @@ export default async function SuperAdminPage() {
     };
   });
 
+  const stats = {
+    total: rows.length,
+    trial: rows.filter((r) => r.state === "trial").length,
+    paid: rows.filter((r) => r.status === "active").length,
+    free: rows.filter((r) => r.status === "free").length,
+    expired: rows.filter(
+      (r) => r.state === "expired" || r.status === "blocked"
+    ).length,
+  };
+  const stat = (label: string, value: number) => (
+    <div className="rounded-card bg-white px-4 py-3 text-center shadow-soft">
+      <p className="font-display text-2xl font-bold">{value}</p>
+      <p className="text-xs text-espresso-light">{label}</p>
+    </div>
+  );
+
   return (
     <div className="mx-auto w-full max-w-3xl px-5 py-8">
       <h1 className="flex items-center gap-2 font-display text-2xl font-semibold">
         <ShieldCheck className="h-6 w-6 text-terracotta" /> mojlokal Superadmin
       </h1>
       <p className="mt-1 text-sm text-espresso-light">
-        Lokale freischalten (nach Zahlungseingang), Testphase verlängern oder sperren.
+        Wer hat sich wann und wo angemeldet — plus freischalten, Testphase
+        verlängern oder sperren.
       </p>
+
+      <div className="mt-6 grid grid-cols-3 gap-2 sm:grid-cols-5">
+        {stat("Gesamt", stats.total)}
+        {stat("Testphase", stats.trial)}
+        {stat("Zahlend", stats.paid)}
+        {stat("Gratis", stats.free)}
+        {stat("Abgelaufen", stats.expired)}
+      </div>
+
       <div className="mt-6">
         <VenueAdminList venues={rows} />
       </div>

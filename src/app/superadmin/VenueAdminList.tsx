@@ -2,7 +2,7 @@
 
 import { useTransition } from "react";
 import { useRouter } from "next/navigation";
-import { BadgeCheck, Ban, Clock3, Gift, RotateCcw, Sparkles } from "lucide-react";
+import { BadgeCheck, Ban, Clock3, Gift, MapPin, RotateCcw, Sparkles } from "lucide-react";
 import { Button, Card } from "@/components/ui";
 import { setVenueSubscription } from "./actions";
 
@@ -10,6 +10,8 @@ type Row = {
   id: string;
   name: string;
   slug: string;
+  city: string | null;
+  ownerName: string | null;
   ownerEmail: string;
   createdAt: string;
   status: string;
@@ -63,12 +65,27 @@ export function VenueAdminList({ venues }: { venues: Row[] }) {
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div>
               <p className="font-display text-lg font-semibold">
-                {r.name}{" "}
-                <span className="text-sm font-normal text-espresso/40">/{r.slug}</span>
+                {r.name}
+                {r.city && (
+                  <span className="ml-2 inline-flex items-center gap-1 align-middle text-sm font-semibold text-terracotta-dark">
+                    <MapPin className="h-3.5 w-3.5" /> {r.city}
+                  </span>
+                )}
               </p>
-              <p className="text-sm text-espresso-light">{r.ownerEmail}</p>
+              <p className="text-sm text-espresso-light">
+                {r.ownerName ? `${r.ownerName} · ` : ""}
+                {r.ownerEmail}
+              </p>
               <p className="text-xs text-espresso/40">
-                registriert {new Date(r.createdAt).toLocaleDateString("de-AT")}
+                angemeldet{" "}
+                {new Date(r.createdAt).toLocaleString("de-AT", {
+                  day: "2-digit",
+                  month: "2-digit",
+                  year: "numeric",
+                  hour: "2-digit",
+                  minute: "2-digit",
+                })}{" "}
+                Uhr · /{r.slug}
               </p>
             </div>
             <div className="flex flex-wrap items-center gap-1.5">

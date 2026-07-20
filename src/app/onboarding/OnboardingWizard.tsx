@@ -21,6 +21,7 @@ export function OnboardingWizard() {
 
   const [venueName, setVenueName] = useState("");
   const [ownerName, setOwnerName] = useState("");
+  const [city, setCity] = useState("");
   const [waiters, setWaiters] = useState<WaiterDraft[]>([
     { name: "", targetShifts: 5 },
     { name: "", targetShifts: 5 },
@@ -53,7 +54,9 @@ export function OnboardingWizard() {
 
   const canNext =
     step === 1
-      ? venueName.trim().length > 0 && ownerName.trim().length > 0
+      ? venueName.trim().length > 0 &&
+        ownerName.trim().length > 0 &&
+        city.trim().length > 0
       : step === 2
         ? validWaiters.length > 0
         : step === 3
@@ -66,6 +69,7 @@ export function OnboardingWizard() {
     const result = await completeOnboarding({
       venueName,
       ownerName,
+      city,
       waiters: validWaiters,
       templates: validTemplates,
       openingDays,
@@ -163,6 +167,15 @@ export function OnboardingWizard() {
                 value={ownerName}
                 onChange={(e) => setOwnerName(e.target.value)}
                 placeholder={t("onboarding.ownerNamePlaceholder")}
+              />
+            </div>
+            <div>
+              <Label htmlFor="city">{t("onboarding.city")}</Label>
+              <Input
+                id="city"
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+                placeholder={t("onboarding.cityPlaceholder")}
               />
             </div>
           </div>

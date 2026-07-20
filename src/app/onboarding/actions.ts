@@ -7,6 +7,7 @@ import { generatePin, slugify } from "@/lib/utils";
 export type OnboardingInput = {
   venueName: string;
   ownerName: string;
+  city: string;
   waiters: { name: string; targetShifts: number }[];
   templates: { name: string; start: string; end: string }[];
   openingDays: number[];
@@ -57,6 +58,7 @@ export async function completeOnboarding(
       name: venueName,
       slug,
       owner_name: input.ownerName.trim() || null,
+      city: input.city.trim() || null,
       opening_days: input.openingDays.length ? input.openingDays : [1, 2, 3, 4, 5, 6, 7],
       onboarded_at: new Date().toISOString(),
     })

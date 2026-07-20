@@ -4,6 +4,7 @@ export type Venue = {
   name: string;
   slug: string;
   owner_name: string | null;
+  city: string | null;
   opening_days: number[];
   default_locale: "hr" | "de";
   currency: string;
