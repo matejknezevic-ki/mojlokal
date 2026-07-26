@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>mojlokal — Lead-Kit</title>
+<meta name="description" content="Cafés & Bars in Split, Makarska, Zagreb — Kontakte und fertige kroatische Anschreiben.">
+<meta name="theme-color" content="#c15f3c">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Lead-Kit">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/icon-180.png">
+<link rel="icon" type="image/png" href="/icon-192.png">
+<style>
+  :root {
+    --ground:#f6f1e8; --surface:#fffdf8; --surface-2:#f0e9dc;
+    --ink:#2a2018; --ink-soft:#6b5d4f; --ink-faint:#9c8d7b;
+    --line:rgba(42,32,24,.11); --accent:#c15f3c; --accent-soft:rgba(193,95,60,.12); --accent-ink:#fff;
+    --verified:#5f7a52; --verified-bg:rgba(95,122,82,.14); --likely:#a9761f; --likely-bg:rgba(169,118,31,.14);
+    --shadow:0 1px 2px rgba(42,32,24,.05),0 6px 20px rgba(42,32,24,.06);
+  }
+  @media (prefers-color-scheme:dark){:root{
+    --ground:#1e1710; --surface:#29211a; --surface-2:#332a21;
+    --ink:#f3ebdd; --ink-soft:#c6b7a4; --ink-faint:#90806d;
+    --line:rgba(243,235,221,.12); --accent:#dc7d55; --accent-soft:rgba(220,125,85,.16); --accent-ink:#1e1710;
+    --verified:#9cba85; --verified-bg:rgba(156,186,133,.16); --likely:#d6a552; --likely-bg:rgba(214,165,82,.16);
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 22px rgba(0,0,0,.3);
+  }}
+  :root[data-theme="light"]{--ground:#f6f1e8;--surface:#fffdf8;--surface-2:#f0e9dc;--ink:#2a2018;--ink-soft:#6b5d4f;--ink-faint:#9c8d7b;--line:rgba(42,32,24,.11);--accent:#c15f3c;--accent-soft:rgba(193,95,60,.12);--accent-ink:#fff;--verified:#5f7a52;--verified-bg:rgba(95,122,82,.14);--likely:#a9761f;--likely-bg:rgba(169,118,31,.14);--shadow:0 1px 2px rgba(42,32,24,.05),0 6px 20px rgba(42,32,24,.06);}
+  :root[data-theme="dark"]{--ground:#1e1710;--surface:#29211a;--surface-2:#332a21;--ink:#f3ebdd;--ink-soft:#c6b7a4;--ink-faint:#90806d;--line:rgba(243,235,221,.12);--accent:#dc7d55;--accent-soft:rgba(220,125,85,.16);--accent-ink:#1e1710;--verified:#9cba85;--verified-bg:rgba(156,186,133,.16);--likely:#d6a552;--likely-bg:rgba(214,165,82,.16);--shadow:0 1px 2px rgba(0,0,0,.3),0 6px 22px rgba(0,0,0,.3);}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--ground);color:var(--ink);font-family:"Instrument Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:1120px;margin:0 auto;padding:calc(24px + env(safe-area-inset-top)) calc(18px + env(safe-area-inset-right)) calc(60px + env(safe-area-inset-bottom)) calc(18px + env(safe-area-inset-left));}
+  .serif{font-family:"Fraunces",ui-serif,Georgia,"Times New Roman",serif;}
+  .brand{display:flex;align-items:center;gap:9px;font-weight:600;color:var(--accent);}
+  .brand .dot{width:10px;height:10px;border-radius:50%;background:var(--accent);}
+  h1{font-size:clamp(1.9rem,4vw,2.7rem);font-weight:600;margin:12px 0 6px;letter-spacing:-.015em;text-wrap:balance;}
+  .lede{color:var(--ink-soft);max-width:64ch;font-size:1.02rem;}
+  .stats{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px;}
+  .stat{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:11px 17px;box-shadow:var(--shadow);}
+  .stat b{font-family:"Fraunces",ui-serif,Georgia,serif;font-size:1.5rem;font-weight:600;display:block;font-variant-numeric:tabular-nums;}
+  .stat span{color:var(--ink-faint);font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;}
+  section{margin-top:28px;}
+  .sec-label{font-size:.76rem;text-transform:uppercase;letter-spacing:.09em;color:var(--ink-faint);font-weight:600;margin-bottom:12px;}
+  .note{background:var(--accent-soft);border:1px solid color-mix(in srgb,var(--accent) 30%,transparent);border-radius:14px;padding:15px 18px;font-size:.9rem;color:var(--ink-soft);}
+  .note b{color:var(--ink);}
+  .templates{display:grid;grid-template-columns:1fr;gap:14px;}
+  @media(min-width:760px){.templates{grid-template-columns:1fr 1fr;}}
+  .tpl{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:var(--shadow);}
+  .tpl h3{margin:0 0 4px;font-size:1.05rem;display:flex;align-items:center;gap:8px;}
+  .tpl .sub{color:var(--ink-faint);font-size:.82rem;margin-bottom:12px;}
+  .tpl pre{white-space:pre-wrap;font-family:inherit;font-size:.85rem;color:var(--ink-soft);background:var(--surface-2);border-radius:10px;padding:12px 13px;margin:0 0 12px;line-height:1.55;max-height:190px;overflow-y:auto;}
+  .filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:6px;}
+  .chip{font:inherit;font-size:.85rem;font-weight:600;cursor:pointer;background:var(--surface);color:var(--ink-soft);border:1px solid var(--line);border-radius:999px;padding:7px 15px;transition:all .15s;}
+  .chip:hover{border-color:var(--accent);color:var(--ink);}
+  .chip[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);}
+  .city-h{display:flex;align-items:baseline;gap:10px;margin:26px 0 14px;}
+  .city-h h2{font-size:1.5rem;font-weight:600;margin:0;}
+  .city-h .count{color:var(--ink-faint);font-size:.9rem;}
+  .grid{display:grid;grid-template-columns:1fr;gap:12px;}
+  @media(min-width:560px){.grid{grid-template-columns:1fr 1fr;}}
+  @media(min-width:900px){.grid{grid-template-columns:1fr 1fr 1fr;}}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:15px;padding:14px 14px 12px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:9px;}
+  .card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;}
+  .card h4{margin:0;font-size:1rem;font-weight:600;letter-spacing:-.01em;line-height:1.25;}
+  .card .area{color:var(--ink-faint);font-size:.78rem;margin-top:2px;}
+  .badge{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:3px 7px;border-radius:999px;white-space:nowrap;}
+  .badge.v{background:var(--verified-bg);color:var(--verified);}
+  .badge.l{background:var(--likely-bg);color:var(--likely);}
+  .chan{display:flex;flex-wrap:wrap;gap:6px;align-items:center;}
+  .chan a{display:inline-flex;align-items:center;gap:4px;font-size:.8rem;font-weight:600;text-decoration:none;color:var(--ink);background:var(--surface-2);padding:4px 9px;border-radius:8px;border:1px solid var(--line);max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .chan a:hover{border-color:var(--accent);color:var(--accent);}
+  .chan .none{font-size:.78rem;color:var(--ink-faint);font-style:italic;}
+  .actions{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;}
+  button.copy{font:inherit;font-size:.8rem;font-weight:600;cursor:pointer;border-radius:9px;padding:7px 11px;border:1px solid transparent;transition:all .15s;display:inline-flex;align-items:center;gap:5px;}
+  button.copy.dm{background:var(--accent);color:var(--accent-ink);}
+  button.copy.dm:hover{filter:brightness(1.05);}
+  button.copy.mail{background:transparent;color:var(--ink);border-color:var(--line);}
+  button.copy.mail:hover{border-color:var(--accent);color:var(--accent);}
+  button.copy.done{background:var(--verified);color:#fff;border-color:var(--verified);}
+  .hidden{display:none!important;}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px;}
+  @media(prefers-reduced-motion:reduce){*{transition:none!important;}}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand"><span class="dot"></span> mojlokal · Lead-Kit</div>
+    <h1 class="serif">Kafići i barovi za obilazak</h1>
+    <p class="lede">Breite Lauf-Liste an Cafés, Bars, Beach-Bars und Coffee-Shops in Split, Makarska und Zagreb — Kontakt (Instagram/E-Mail) & Quelle wo öffentlich auffindbar, sonst Name + Lage fürs Abklappern vor Ort. Pro Laden ein fertiges kroatisches Anschreiben zum Kopieren.</p>
+    <div class="stats" id="stats"></div>
+  </header>
+
+  <section>
+    <div class="note"><b>Vor dem Senden prüfen.</b> Handles/E-Mails ändern sich — <b>„provjereno"</b> = direkt vom eigenen Profil gesehen, <b>„provjeri"</b> = aus Verzeichnis (kurz gegenchecken). Viele Läden haben nur Name + Lage — die klapperst du auf der Tour direkt ab. Halte dich an B2B-Regeln (relevant, kein Massenversand, Opt-out steht in der Mail). Instagram limitiert DMs an Nicht-Follower — über den Tag verteilen.</div>
+  </section>
+
+  <section>
+    <div class="sec-label">Vorlagen (Name & Stadt werden pro Laden automatisch eingesetzt)</div>
+    <div class="templates">
+      <div class="tpl"><h3>📱 Instagram-DM</h3><div class="sub">Locker, per Du.</div><pre id="tpl-dm"></pre><button class="copy dm" data-tpl="dm">Vorlage kopieren</button></div>
+      <div class="tpl"><h3>📧 E-Mail</h3><div class="sub">Höflich, per Sie. Mit Betreff & Opt-out.</div><pre id="tpl-mail"></pre><button class="copy mail" data-tpl="mail">Vorlage kopieren</button></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="filters" id="filters"></div>
+    <div class="sec-label" style="margin-top:14px" id="filterinfo"></div>
+    <div id="leads"></div>
+  </section>
+</div>
+
+<script>
+const LINK = "https://mojlokal.vercel.app";
+const CITY = { Split:{loc:"Splitu",gen:"Splita"}, Makarska:{loc:"Makarskoj",gen:"Makarske"}, Zagreb:{loc:"Zagrebu",gen:"Zagreba"} };
+
+// c=city, n=name, a=area, ig=handle|null, e=email|null, w=web|null, s=source(dir), cf=v|l
+const RAW = [
+// ===== SPLIT =====
+{c:"Split",n:"D16 Specialty Coffee",a:"Dominisova 16, Stari grad",ig:"d16coffee",w:"https://www.d16coffee.com/",cf:"v"},
+{c:"Split",n:"KaKantun Specialty Coffee & Gin",a:"Dujma Vuškovića, palača",ig:"ka_kantun",w:"http://kakantun.com/en/",cf:"v"},
+{c:"Split",n:"4coffee Soul Food",a:"Hrvojeva 9, uz Pazar",ig:"4coffee.split",e:"4coffee.sf@gmail.com",cf:"v"},
+{c:"Split",n:"Tinel Specialty Coffee",a:"Križeva 4, Varoš/stari grad",ig:"tinel.split",cf:"v"},
+{c:"Split",n:"Teak Food & Bar",a:"Majstora Jurja 11, palača",ig:"teakcaffesplit",cf:"v"},
+{c:"Split",n:"Café & Restaurant Lvxor",a:"Peristil, palača",ig:"lvxorcroatia",w:"https://lvxor.hr/",cf:"v"},
+{c:"Split",n:"Charlie's Bar",a:"Petra Kružića 5-6, palača",ig:"charliesbar_split",w:"https://charliesbarsplit.weebly.com/",cf:"v"},
+{c:"Split",n:"Marvlvs Library Jazz Bar",a:"Papalićeva 4, palača",ig:"marvlvs",cf:"v"},
+{c:"Split",n:"Academia Club Ghetto",a:"Dosud 10, Get",ig:"academiaclubghetto",cf:"v"},
+{c:"Split",n:"Fluid",a:"Dosud 1, stari grad",ig:"fluid_bar",cf:"l"},
+{c:"Split",n:"Bar Sistema",a:"A. Kačića Miošića 7",ig:"barsistema",w:"https://barsistema.com/",cf:"v"},
+{c:"Split",n:"Cocktail Bar Gaga",a:"Iza Lože 5, uz Pjacu",ig:"cocktailbargaga",cf:"v"},
+{c:"Split",n:"The Daltonist Craft Bar",a:"Hrvojeva 10, rub palače",ig:"thedaltonistcraftbar",w:"https://thedaltonist.com/",cf:"v"},
+{c:"Split",n:"Noor Bar",a:"Bajamontijeva 2, palača",ig:"noorbarsplit",cf:"v"},
+{c:"Split",n:"Cafe Bar Porta",a:"Majstora Jurja 4, palača",w:"https://cafebarporta.com/",cf:"v"},
+{c:"Split",n:"Galerija Food Bar",a:"Vuškovićeva 9, palača",ig:"galerijabarfood",cf:"v"},
+{c:"Split",n:"Zinfandel Food & Wine Bar",a:"palača (Riva–Pjaca)",ig:"zinfandelsplit",w:"https://www.zinfandelfoodandwinebar.com/",cf:"v"},
+{c:"Split",n:"Paradox Wine & Cheese Bar",a:"Poljana Tina Ujevića 2 / B. J. Jelačića 3",ig:"paradox_split",e:"info@paradox.hr",w:"https://paradox.hr/",cf:"v"},
+{c:"Split",n:"Central the Club",a:"Trg Gaje Bulata 4",ig:"centraltheclub",e:"reservations@centralclub.hr",w:"http://www.centralclub.hr/",cf:"v"},
+{c:"Split",n:"Bokeria Kitchen & Wine",a:"Domaldova 8, palača",ig:"bokeriacroatia",e:"hello@bokeria.hr",w:"https://www.bokeria.hr/",cf:"v"},
+{c:"Split",n:"Bajamonti",a:"Prokurative (Trg Republike)",ig:"bajamonti.split",w:"https://bajamonti.com/",cf:"v"},
+{c:"Split",n:"Coffee Bar St-Riva",a:"Riva, Obala HNP 18",ig:"st.riva_cocktail.bar",cf:"v"},
+{c:"Split",n:"Fabrique Pub",a:"Trg Franje Tuđmana 3, Marmontova",w:"https://fgroup.hr/",cf:"v"},
+{c:"Split",n:"Paradiso Cocktail Bar",a:"Tončićeva 4, uz Marmontovu",w:"https://www.paradisobarsplit.com/",cf:"v"},
+{c:"Split",n:"Kazališna Kavana HNK",a:"Trg Gaje Bulata 1",cf:"v"},
+{c:"Split",n:"STOW Specialty Coffee",a:"stari grad",ig:"stowsplit",cf:"v"},
+{c:"Split",n:"kava2 (kava.family)",a:"Ante Starčevića, uz stari grad",w:"https://kava.family/",cf:"v"},
+{c:"Split",n:"Vivas Bar",a:"Narodni trg 10 (Pjaca)",s:"https://www.facebook.com/VivasBarSplit/",cf:"l"},
+{c:"Split",n:"Bobis",a:"Trg Republike / Marmontova 1",cf:"v"},
+{c:"Split",n:"Bobis Zvončac",a:"Zvončac, zapadna obala",cf:"v"},
+{c:"Split",n:"Sanctuary Cocktail & Whiskey Bar",a:"Poljana Stare gimnazije 1",cf:"v"},
+{c:"Split",n:"Teraca Vidilica",a:"Nazorov prilaz 1, Marjan",ig:"teraca_vidilica",w:"https://teraca-vidilica.eatbu.com/",cf:"v"},
+{c:"Split",n:"Kavana ProCaffe (Marjan)",a:"Marjan, sjeverna obala",ig:"procaffe_split",cf:"v"},
+{c:"Split",n:"ProCaffe Spinut",a:"Spinut, lučica",ig:"procaffe_spinut",cf:"v"},
+{c:"Split",n:"Caffe Galerija",a:"palača, uz Rivu",s:"https://onthegrid.city/split/split/caffe-galerija",cf:"l"},
+{c:"Split",n:"Caffe Bar La Linea",a:"uličice uz Pjacu",cf:"v"},
+{c:"Split",n:"Comodo",a:"Pjaca, stari grad",cf:"l"},
+{c:"Split",n:"Café Kala",a:"Majstora Jurja 15",cf:"l"},
+{c:"Split",n:"Leopold's Craft Beer Bar",a:"Dosud 6, stari grad",cf:"l"},
+{c:"Split",n:"Sanctuary Bar",a:"Poljana Stare gimnazije 1",cf:"l"},
+{c:"Split",n:"Art Gallery Cafe Music Bar",a:"Kralja Tomislava 15",cf:"l"},
+{c:"Split",n:"Antique Bar (Antika)",a:"uz Voćni trg",cf:"l"},
+{c:"Split",n:"Caffe Bar Palača Judita",a:"Narodni trg (Pjaca)",cf:"l"},
+{c:"Split",n:"String's / Guitar Bar",a:"Zagrebačka 1, uz Muzej grada",s:"https://www.facebook.com/guitarbar.split",cf:"l"},
+{c:"Split",n:"Shooters Bar",a:"Majstora Jurja 5",cf:"l"},
+{c:"Split",n:"Caffe Bar Fro",a:"Riva, sredina",cf:"l"},
+{c:"Split",n:"Olive Tree Dining & Clubbing",a:"Riva",cf:"l"},
+{c:"Split",n:"Promenada",a:"Riva, SZ ugao palače",cf:"l"},
+{c:"Split",n:"Bistro NoStress",a:"stari grad, uz Rivu",s:"https://www.facebook.com/caffebarnostress/",cf:"l"},
+{c:"Split",n:"Gourmet Bar Basta",a:"uz obalu / rub starog grada",cf:"l"},
+{c:"Split",n:"Caffe Bar Spuntino",a:"Trg Gaje Bulata 1",cf:"l"},
+{c:"Split",n:"After Dark",a:"Matošića 21, Veli Varoš",cf:"l"},
+{c:"Split",n:"Blue",a:"Veli Varoš",cf:"l"},
+{c:"Split",n:"Mala Kavana",a:"stari grad",ig:"mala_kavanast",cf:"l"},
+{c:"Split",n:"Bokeria Wine Bar",a:"uz ribarnicu/Marmontovu",cf:"v"},
+{c:"Split",n:"Caffe Bar Ladolina",a:"uz Pazar, rub starog grada",cf:"l"},
+// Split beach / Split 3
+{c:"Split",n:"Caffe Bar Žbirac",a:"plaža Bačvice",w:"https://www.zbirac.com/",cf:"v"},
+{c:"Split",n:"Kavala Beach Bar",a:"plaža Bačvice",ig:"kavala_beach_bar",cf:"v"},
+{c:"Split",n:"Caffe Lounge Bar Fjaka",a:"plaža Bačvice",cf:"v"},
+{c:"Split",n:"Tortuga Grill & Pub",a:"plaža Bačvice",cf:"l"},
+{c:"Split",n:"Cafe Bar Dalton",a:"plaža Bačvice",cf:"l"},
+{c:"Split",n:"La Playa Day and Night",a:"plaža Bačvice",cf:"l"},
+{c:"Split",n:"Kavana Ovčice",a:"Ovčice / Bačvice",cf:"l"},
+{c:"Split",n:"Club Bačvice",a:"plaža Bačvice",ig:"club_bacvice",cf:"v"},
+{c:"Split",n:"Jadran Beach Bar",a:"Sustipan / Zvončac",ig:"jadranbeachbar",cf:"v"},
+{c:"Split",n:"Central Beach Split",a:"plaža Žnjan",ig:"central.beach.split",w:"https://centralbeachsplit.com/",cf:"v"},
+{c:"Split",n:"GAL Split",a:"plaža Žnjan",w:"https://gal-split.com/",cf:"v"},
+{c:"Split",n:"Palma Beach Club",a:"plaža Žnjan",ig:"palmabeachclub",w:"https://palmabeachclub.com/",cf:"v"},
+{c:"Split",n:"Taboo Beach Club",a:"plaža Žnjan",ig:"taboobeachclub.split",w:"https://www.taboo-beach.com/",cf:"v"},
+{c:"Split",n:"Casa Sol",a:"plaža Žnjan",cf:"l"},
+{c:"Split",n:"MIMI Italian Clubino",a:"plaža Žnjan",cf:"l"},
+{c:"Split",n:"Monkey Lounge & Beach Bar",a:"plaža Žnjan",cf:"l"},
+{c:"Split",n:"Fiera Beach & Lounge Bar",a:"plaža Žnjan",cf:"l"},
+{c:"Split",n:"Beach & Lounge Bar Skaut",a:"plaža Žnjan",cf:"l"},
+{c:"Split",n:"Beach Bar Cool",a:"plaža Žnjan",cf:"l"},
+{c:"Split",n:"Sunset Beach Bar",a:"plaža Žnjan",ig:"sunset.beach.split",cf:"l"},
+{c:"Split",n:"Žnjan City Beach",a:"plaža Žnjan",ig:"znjancitybeach",cf:"v"},
+{c:"Split",n:"Caffe Bar Firule",a:"plaža Firule",ig:"firule_split",cf:"v"},
+{c:"Split",n:"Mistral Beach Club",a:"plaža Trstenik",ig:"mistralbeachclub",w:"https://mistralbeachclub.com/",cf:"v"},
+{c:"Split",n:"Beach Bar Zenta",a:"uvala Zenta",w:"http://www.zentasplit.com",cf:"l"},
+{c:"Split",n:"Joe's Beach Lounge & Bar",a:"plaža Kašjuni, Marjan",w:"https://joesbeach.com",cf:"v"},
+{c:"Split",n:"Restoran Poljud",a:"Poljud",ig:"restoran_poljud",cf:"l"},
+{c:"Split",n:"Kalafatić Caffe Bar",a:"Spinut / Poljud marina",cf:"l"},
+{c:"Split",n:"Grill Bar Dolis",a:"Split 3 / Spinut",ig:"dolissplit",cf:"l"},
+{c:"Split",n:"Upcafe",a:"Split 3",ig:"upcafe.split",cf:"l"},
+{c:"Split",n:"CLO Bar",a:"Split 3",ig:"clobar.split",cf:"l"},
+{c:"Split",n:"Caffe Bar Qvart",a:"Split 3",ig:"qvartsplit",cf:"l"},
+{c:"Split",n:"Caffe Bar Basket Pub",a:"Split 3",ig:"caffe_bar_basket_pub",cf:"l"},
+{c:"Split",n:"R&B Caffe Bar Luna",a:"Split 3, Papandopulova",cf:"l"},
+{c:"Split",n:"Caffe Bar Strada",a:"Split 3",cf:"l"},
+{c:"Split",n:"Caffe Bar StarBox",a:"Split 3 / Gripe",w:"https://caffe-bar-starbox.eatbu.hr/",cf:"l"},
+{c:"Split",n:"Caffe Bar Kafić",a:"Pazdigrad, uz Žnjan",ig:"kafickafic",cf:"l"},
+
+// ===== MAKARSKA =====
+{c:"Makarska",n:"Špina Bar",a:"Kalalarga 32",ig:"spinabarmakarska",e:"rezervacije.spinabar@gmail.com",w:"https://spina-bar.netlify.app/",cf:"v"},
+{c:"Makarska",n:"Marineta Cocktail Bar",a:"Marineta 8, Riva",ig:"marineta.makarska",e:"info@marineta.hr",w:"https://marineta.hr/",cf:"v"},
+{c:"Makarska",n:"Bounty Bar & Steakhouse",a:"Šetalište, uz plažu",ig:"bounty__restaurant",e:"info@bounty-makarska.com",w:"https://www.bounty-makarska.com/",cf:"v"},
+{c:"Makarska",n:"Providenca Bar",a:"Šetalište sv. Petra 6",ig:"providenca.bar",cf:"v"},
+{c:"Makarska",n:"Makarana Bar (beach & night club)",a:"gradska plaža / Šetalište sv. Petra 1",ig:"makarana_bar",cf:"v"},
+{c:"Makarska",n:"Buba Beach Bar",a:"plaža Cvitačka",ig:"bubabeachbar",cf:"v"},
+{c:"Makarska",n:"Deep",a:"Šetalište fra Jure Radića 5a",ig:"deepmakarska",w:"http://deep.hr/",cf:"v"},
+{c:"Makarska",n:"Hops! Beer & Food Factory",a:"Marineta 7, Riva",ig:"hops.beer.and.food.factory",cf:"v"},
+{c:"Makarska",n:"Cubano Beach Bar",a:"Put Cvitačke 64",ig:"cubanobeach.makarska",cf:"v"},
+{c:"Makarska",n:"Fyaka Coffee",a:"Kalalarga 4",ig:"fyakacoffee",w:"https://fyakacoffe.com/",cf:"v"},
+{c:"Makarska",n:"Drop Coffeeshop & Wine Bar",a:"Kalalarga 28",ig:"thisisdrop",cf:"v"},
+{c:"Makarska",n:"Tramuntana Cocktail Bar",a:"Šetalište Tuđmana 12 / Donja luka",ig:"tramuntana_makarska",cf:"v"},
+{c:"Makarska",n:"Bellamare Beach Bar",a:"Put Cvitačke",ig:"bellamare_beach_bar",cf:"v"},
+{c:"Makarska",n:"Nautica Bar",a:"Obala kralja Tomislava 6, Riva",ig:"nautica_bar",cf:"v"},
+{c:"Makarska",n:"Štorija Bar",a:"Marineta 3, Riva",ig:"storijabar",cf:"v"},
+{c:"Makarska",n:"Sól Lounge & Music Bar",a:"Šetalište sv. Petra",ig:"sol.music.bar",w:"https://solmusicbar.com/",cf:"v"},
+{c:"Makarska",n:"Bodul Food & Bar",a:"Kalalarga 9 / Obala 8",ig:"bodul_food_bar",cf:"v"},
+{c:"Makarska",n:"February 30 Cocktail Bar",a:"Trg Hrpina 5, stari grad",w:"https://february30makarska.com/",cf:"v"},
+{c:"Makarska",n:"Places Beach Bar (Valamar)",a:"Šetalište Tuđmana 15a",cf:"l"},
+{c:"Makarska",n:"Caffe Bar Smile",a:"Lištun 2",cf:"l"},
+{c:"Makarska",n:"Pivnica Pivac (Rooster Pub)",a:"Marineta 13, Riva",cf:"l"},
+{c:"Makarska",n:"Lištun Bar",a:"Lištun 9",cf:"l"},
+{c:"Makarska",n:"Bam-Bou Bar",a:"Marineta 3, Riva",cf:"l"},
+{c:"Makarska",n:"Tempera Streetfood & Bar",a:"Šetalište fra Jure Radića",cf:"l"},
+{c:"Makarska",n:"Bar Riviera",a:"Put Cvitačka / plaža",cf:"l"},
+{c:"Makarska",n:"Caffe Bar Nocturno",a:"Šetalište Tuđmana 15",cf:"l"},
+{c:"Makarska",n:"Caffe Bar Kostela",a:"Kralja Tomislava 4, Riva",cf:"l"},
+{c:"Makarska",n:"Blue Bar Café",a:"Ante Starčevića 15",cf:"l"},
+{c:"Makarska",n:"Briskula",a:"Kalalarga 11",cf:"l"},
+{c:"Makarska",n:"Café Bar Lloyd",a:"Obala Ivana Pavla II 1, Riva",cf:"l"},
+{c:"Makarska",n:"Tempet Café",a:"Kralja Tomislava 10-11, Riva",cf:"l"},
+{c:"Makarska",n:"Cafebar Laganini",a:"Vukovarska 1",cf:"l"},
+{c:"Makarska",n:"Cafebar Martini",a:"Kačićev trg",cf:"l"},
+{c:"Makarska",n:"Cafebar Vice",a:"Zrinsko Frankopanska",cf:"l"},
+{c:"Makarska",n:"Caffe bar Aquarelle",a:"Šetalište Tuđmana",cf:"l"},
+{c:"Makarska",n:"Giro Café Bar",a:"Ante Starčevića 16",cf:"l"},
+{c:"Makarska",n:"Makarano Beach Bar",a:"plaža Cvitačka",cf:"l"},
+{c:"Makarska",n:"Caffe bar Mozzart",a:"Cvitačka",cf:"l"},
+{c:"Makarska",n:"Caffe bar Queen",a:"Stjepana Ivičevića 66",cf:"l"},
+{c:"Makarska",n:"Caffe Bar Roko LD",a:"Vrgorska 2",cf:"l"},
+{c:"Makarska",n:"Sport Caffee",a:"Europske zajednice 1",cf:"l"},
+{c:"Makarska",n:"Caffe Bar Zagreb",a:"Obala kralja Tomislava 8, Riva",cf:"l"},
+{c:"Makarska",n:"Cafe Oscar",a:"Splitska 53",cf:"l"},
+{c:"Makarska",n:"Caffe Bar Viva",a:"Vukovarska 42",cf:"l"},
+{c:"Makarska",n:"City Café Romana",a:"Kralja Tomislava 14, Riva",cf:"l"},
+{c:"Makarska",n:"Kantun Caffe",a:"Kačićev trg 1",cf:"l"},
+{c:"Makarska",n:"Point Cafebar",a:"Kačićev trg 7",cf:"l"},
+{c:"Makarska",n:"Škatula",a:"Kralja Tomislava 4, Riva",cf:"l"},
+{c:"Makarska",n:"Caffe Bar Big Blue",a:"Veliko brdo 1a",cf:"l"},
+{c:"Makarska",n:"Migros Cafe",a:"Ante Starčevića 120",cf:"l"},
+
+// ===== ZAGREB =====
+{c:"Zagreb",n:"Cogito Coffee",a:"Varšavska 11, Donji grad",ig:"cogitocoffeeroasters",e:"info@cogitocoffee.com",w:"https://www.cogitocoffee.com/",cf:"v"},
+{c:"Zagreb",n:"Eli's Caffe",a:"Ilica 63, kod Britanca",ig:"elis_caffe",e:"info@eliscaffe.com",w:"https://www.eliscaffe.com",cf:"v"},
+{c:"Zagreb",n:"Quahwa Coffee & Roastery",a:"Teslina 9, Donji grad",ig:"quahwaroastery",w:"https://quahwa.hr",cf:"v"},
+{c:"Zagreb",n:"Monocycle Specialty Coffee",a:"Kneza Mislava 17",cf:"v"},
+{c:"Zagreb",n:"Four Wheel Coffee Roasters",a:"Martićeva 67, Kvatrić",ig:"four_wheel_coffee_roasters",cf:"v"},
+{c:"Zagreb",n:"Filteraj",a:"Vlaška 10, Donji grad",ig:"filteraj.zg",cf:"v"},
+{c:"Zagreb",n:"CHI Specialty Coffee & Bistro",a:"Preradovićeva 34",ig:"chispecialtycoffee",cf:"v"},
+{c:"Zagreb",n:"Botaničar",a:"Trg Marka Marulića 6 / Tkalčićeva 79",ig:"bar_botanicar",cf:"v"},
+{c:"Zagreb",n:"Kavkaz – Kazališna kavana",a:"Trg Republike Hrvatske 1",ig:"kavkaz_kazalisna_kavana",w:"https://www.kavkaz.hr/",cf:"v"},
+{c:"Zagreb",n:"Program Bar",a:"Martićeva 14F",ig:"program_bar",e:"program.programbar@gmail.com",cf:"v"},
+{c:"Zagreb",n:"Kombinat / Booksa",a:"Martićeva 14d",ig:"kombinat_booksa",cf:"v"},
+{c:"Zagreb",n:"Mr. Fogg",a:"Martićeva 31",ig:"mrfogg_zg",cf:"v"},
+{c:"Zagreb",n:"Buzz Bar",a:"Preradovićeva 30",ig:"buzzbarzagreb",w:"https://www.buzzbar.hr/",cf:"v"},
+{c:"Zagreb",n:"Bulldog Pub",a:"Bogovićeva 6, Cvjetni",ig:"bulldog_zagreb",cf:"v"},
+{c:"Zagreb",n:"Caffe Bar Finjak",a:"Vlaška 78",ig:"caffebarfinjak",cf:"v"},
+{c:"Zagreb",n:"Broom44",a:"Dolac 8",ig:"br00m44",e:"broom44.vedran@gmail.com",w:"https://www.br00m44.com",cf:"v"},
+{c:"Zagreb",n:"Otto & Frank",a:"Tkalčićeva 20",ig:"otto_frank_bar",e:"otto.frank.bar@gmail.com",cf:"v"},
+{c:"Zagreb",n:"Velvet Café",a:"Dežmanova 9, kod Britanca",ig:"velvetzagreb",cf:"v"},
+{c:"Zagreb",n:"Luta Specialty Coffee",a:"Lopašićeva 14",ig:"luta.coffee",cf:"v"},
+{c:"Zagreb",n:"Cafe u Dvorištu",a:"Žerjavića 7",ig:"udvoristuzagreb",cf:"v"},
+{c:"Zagreb",n:"Korica (pekara & café)",a:"Preradovićeva 39",ig:"korica.hr",cf:"l"},
+{c:"Zagreb",n:"Pod Zidom Bistro",a:"Pod zidom 5, Dolac",ig:"podzidom_bistro",e:"bistro@podzidom.hr",w:"https://podzidom.hr/",cf:"v"},
+{c:"Zagreb",n:"Grof Melin Jazz Bar",a:"Kožarska 19, uz Tkalčićevu",ig:"grofmelin",cf:"v"},
+{c:"Zagreb",n:"Icy Bar",a:"Tkalčićeva 13",ig:"icy.bar.zagreb",cf:"v"},
+{c:"Zagreb",n:"Argentina Caffè",a:"Tkalčićeva 9",ig:"argentinacaffe",cf:"v"},
+{c:"Zagreb",n:"Caffe Bar Keglić",a:"Tkalčićeva / Gornji grad",ig:"caffebarkeglic",cf:"l"},
+{c:"Zagreb",n:"Craft Room",a:"Opatovina 35",ig:"craft.room.zagreb",cf:"v"},
+{c:"Zagreb",n:"Express Bar",a:"Petrinjska 4",ig:"express.bar.zg",cf:"v"},
+// Tkalčićeva & Gornji grad (name+area)
+{c:"Zagreb",n:"Ožujsko Pub Tkalča",a:"Tkalčićeva 16",cf:"v"},
+{c:"Zagreb",n:"Rock & Beer Club Alcatraz",a:"Tkalčićeva 15",cf:"v"},
+{c:"Zagreb",n:"History Bar & Club",a:"Tkalčićeva 68",cf:"v"},
+{c:"Zagreb",n:"Booze and Blues",a:"Tkalčićeva 84",cf:"v"},
+{c:"Zagreb",n:"Oliver Twist Pub",a:"Tkalčićeva 60",cf:"v"},
+{c:"Zagreb",n:"Caffe & Cocktail Bar Enigma",a:"Tkalčićeva 25",cf:"v"},
+{c:"Zagreb",n:"Diplomatico Gin & Rum Bar",a:"Tkalčićeva 41",cf:"v"},
+{c:"Zagreb",n:"Funk Club",a:"Tkalčićeva 56",cf:"v"},
+{c:"Zagreb",n:"Rakhia Bar",a:"Tkalčićeva 45",cf:"v"},
+{c:"Zagreb",n:"M&R Caffe Bar",a:"Tkalčićeva 53",cf:"v"},
+{c:"Zagreb",n:"Kavana Procaffe",a:"Tkalčićeva 54",cf:"v"},
+{c:"Zagreb",n:"Caffe Bar Tomato",a:"Tkalčićeva 63",cf:"v"},
+{c:"Zagreb",n:"Caffe Bar Kava Tava",a:"Tkalčićeva",cf:"l"},
+{c:"Zagreb",n:"Cica Bar (rakija)",a:"Tkalčićeva 18",cf:"l"},
+{c:"Zagreb",n:"Stari Fijaker 900",a:"Mesnička, Gornji grad",cf:"l"},
+{c:"Zagreb",n:"Trilogija",a:"Kamenita 5, Gornji grad",cf:"l"},
+{c:"Zagreb",n:"Kamenita Vrata Caffe",a:"Kamenita, Gornji grad",cf:"l"},
+{c:"Zagreb",n:"Caffe Bar A'e",a:"Radićeva 54",cf:"v"},
+{c:"Zagreb",n:"Caffe Bar Destino",a:"Radićeva (vrh)",cf:"v"},
+{c:"Zagreb",n:"Caffe Bar Čvenk",a:"Radićeva 23",cf:"v"},
+{c:"Zagreb",n:"Braća Radić Caffe Bar",a:"Radićeva",cf:"l"},
+{c:"Zagreb",n:"Krolo Caffe Bar",a:"Radićeva 7",cf:"l"},
+{c:"Zagreb",n:"Bar Potepuh",a:"Kaptol 4",cf:"l"},
+{c:"Zagreb",n:"Kaptol Restoran i Caffe Bar",a:"Kaptol",cf:"v"},
+{c:"Zagreb",n:"Caffe Bar London",a:"Nova Ves 73",cf:"l"},
+{c:"Zagreb",n:"Caffe Bar Scala",a:"Skalinska 2A",cf:"v"},
+{c:"Zagreb",n:"Caffe Bar Zagorka",a:"Dolac",cf:"v"},
+{c:"Zagreb",n:"Dolac Caffe Bar",a:"Dolac",cf:"v"},
+{c:"Zagreb",n:"Caffe Bar Kumica",a:"Dolac",cf:"v"},
+// Donji grad more
+{c:"Zagreb",n:"Mojo Bar",a:"Martićeva 5",cf:"l"},
+{c:"Zagreb",n:"Swanky Monkey Garden",a:"Ilica 50 (dvorište)",cf:"l"},
+{c:"Zagreb",n:"Tesla New Generation",a:"Varšavska 4",cf:"l"},
+{c:"Zagreb",n:"Amélie",a:"Vlaška 6",cf:"l"},
+{c:"Zagreb",n:"Très Chic Café",a:"Vlaška 101",cf:"l"},
+{c:"Zagreb",n:"Johann Franck",a:"Trg bana Jelačića 9",w:"https://johannfranck.hr/",cf:"l"},
+{c:"Zagreb",n:"Bacchus Jazz Bar",a:"Trg kralja Tomislava 16",cf:"l"},
+{c:"Zagreb",n:"Roots Cocktail & Juice Bar",a:"Tomićeva 5",w:"https://roots.bar/",cf:"l"},
+{c:"Zagreb",n:"Yakuza Bar",a:"Gajeva 10",cf:"l"},
+{c:"Zagreb",n:"Charlie (Gajeva)",a:"Gajeva 4",cf:"l"},
+{c:"Zagreb",n:"Regular Bar",a:"Ilica 65",cf:"l"},
+{c:"Zagreb",n:"Dežman Bar",a:"Dežmanova 3",cf:"l"},
+{c:"Zagreb",n:"Blend Bar",a:"Gundulićeva 33",cf:"l"},
+{c:"Zagreb",n:"KOI Cocktail Bar",a:"Ribnjak 10",cf:"l"},
+{c:"Zagreb",n:"Bastion No. 19 (wine)",a:"Masarykova 19",cf:"l"},
+{c:"Zagreb",n:"Moments Wine Bar",a:"Masarykova 9",cf:"l"},
+{c:"Zagreb",n:"Pupitres Wine Bar",a:"Medulićeva 12",cf:"l"},
+{c:"Zagreb",n:"AHA! Slow Wine Bar",a:"Medulićeva 20",cf:"l"},
+{c:"Zagreb",n:"Crna Ovca",a:"Martićeva 14B",cf:"l"},
+{c:"Zagreb",n:"Kavanica",a:"Varšavska 4, Cvjetni",cf:"l"},
+// Neighbourhoods
+{c:"Zagreb",n:"Britanac Cafe Bar",a:"Britanski trg",cf:"v"},
+{c:"Zagreb",n:"Café Bar Pikolo",a:"Britanski trg",cf:"v"},
+{c:"Zagreb",n:"Kava Tava",a:"Britanski trg / Ilica",w:"https://www.kavatava.com/",cf:"v"},
+{c:"Zagreb",n:"Lounge Bar Wave",a:"Britanski trg",ig:"loungebarwave",cf:"v"},
+{c:"Zagreb",n:"Kvak Caffe Bar & Club",a:"Martićeva 71, Kvatrić",cf:"v"},
+{c:"Zagreb",n:"Caffe Bar Aura",a:"Martićeva / Kvatrić",cf:"l"},
+{c:"Zagreb",n:"Giardini",a:"Martićeva / Kvatrić",cf:"l"},
+{c:"Zagreb",n:"Caffe Leone",a:"Kvaternikov trg",cf:"v"},
+{c:"Zagreb",n:"Cafe Cajt",a:"Vlaška 68",cf:"l"},
+{c:"Zagreb",n:"Pivnica Budweiser",a:"Kvaternikov trg",cf:"l"},
+{c:"Zagreb",n:"Caffe Bar Baza",a:"Stara Trešnjevka",cf:"v"},
+{c:"Zagreb",n:"Karibu Kaaawa",a:"Trešnjevka, uz tržnicu",ig:"karibu_kaaawa",cf:"v"},
+{c:"Zagreb",n:"Peaches & Cream Bar",a:"Krapinska 8, Trešnjevka",cf:"v"},
+{c:"Zagreb",n:"Bla-Bla caffe",a:"Ozaljska 46, Trešnjevka",cf:"l"},
+{c:"Zagreb",n:"Caffe Bar Elixir",a:"Trešnjevka",cf:"l"},
+{c:"Zagreb",n:"Caffe Bar Look",a:"Maksimirska 77, Maksimir",cf:"v"},
+{c:"Zagreb",n:"Trinity Experience",a:"Maksimir",cf:"l"},
+{c:"Zagreb",n:"Park Cafe",a:"Maksimirska, uz park",cf:"v"},
+{c:"Zagreb",n:"Ab Ovo",a:"Petrova/Bukovačka, Maksimir",cf:"v"},
+{c:"Zagreb",n:"Kafić Mimice",a:"Maksimir",cf:"l"},
+{c:"Zagreb",n:"Caffe Bar Daba Ravnice",a:"Radauševa 7, Ravnice",ig:"caffe_bar_daba_",cf:"v"},
+{c:"Zagreb",n:"Leggiero bar Ravnice",a:"Ravnice",w:"https://leggiero.hr/ravnice/",cf:"v"},
+{c:"Zagreb",n:"Caffe bar Bumbar",a:"Lastovska 2A, Savica",cf:"l"},
+{c:"Zagreb",n:"Zvjezdana Prašina",a:"Gruska 10, Savica",cf:"l"},
+{c:"Zagreb",n:"Leggiero bar Savica",a:"Savica",w:"https://leggiero.hr/",cf:"v"},
+{c:"Zagreb",n:"Caffe Bar Mint",a:"Savica",cf:"l"},
+{c:"Zagreb",n:"Marli Cafe",a:"Miramarska 22a, Trnje",cf:"l"},
+{c:"Zagreb",n:"Beach Bar Jarun",a:"Aleja M. Ljubeka 11, Jarun",cf:"v"},
+{c:"Zagreb",n:"Caffe bar Charlie",a:"Veliko jezero, Jarun",cf:"v"},
+{c:"Zagreb",n:"Aquarius Klub",a:"Aleja M. Ljubeka 19, Jarun",cf:"v"},
+{c:"Zagreb",n:"Saint Tropez Jarun",a:"Jarun",cf:"v"},
+{c:"Zagreb",n:"Elite Caffe Bar",a:"Ilica 276, Črnomerec",cf:"v"},
+{c:"Zagreb",n:"Caffe Bar Crni Mačak",a:"Črnomerec",cf:"v"},
+{c:"Zagreb",n:"Caffe Bar Centro",a:"Sesvete centar",cf:"v"},
+{c:"Zagreb",n:"Caffe Bar Sava",a:"Varaždinski odvojak 1, Sesvete",cf:"v"},
+{c:"Zagreb",n:"Caffe Bar Braco",a:"Milke Trnine 4, Sesvete",cf:"v"},
+{c:"Zagreb",n:"Caffe Bar La Vita",a:"Glavna 2, Sesvete",cf:"v"},
+{c:"Zagreb",n:"Caffe Vanilla",a:"Sesvete",ig:"caffe.vanilla",cf:"v"},
+];
+
+// dedupe + merge
+const STOP = /\b(specialty|coffee|coffe|shop|roastery|roasters|and)\b/gi;
+function norm(s){return s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/&amp;/g,"&").replace(STOP," ").replace(/\(dup\)|dupno\?/g," ").replace(/[^a-z0-9]+/g," ").trim().replace(/\s+/g," ");}
+const map = new Map();
+for(const r of RAW){
+  const key = r.c + "|" + norm(r.n);
+  if(!key.split("|")[1]) continue;
+  if(!map.has(key)){ map.set(key, {...r}); }
+  else { const m = map.get(key);
+    m.ig = m.ig || r.ig; m.e = m.e || r.e; m.w = m.w || r.w; m.s = m.s || r.s;
+    if(r.cf==="v") m.cf="v";
+    if((r.n||"").length > (m.n||"").length && !/dup/i.test(r.n)) m.n = r.n;
+  }
+}
+const LEADS = [...map.values()].map(l=>({...l, igUrl: l.ig?`https://www.instagram.com/${l.ig}/`:null }));
+
+// templates
+document.getElementById("tpl-dm").textContent = `Pozdrav {LOKAL}! 👋 Radim na aplikaciji mojlokal — za kafiće i barove: raspored smjena složi AI u par sekundi, konobari se prijavljuju PIN-om, a smjena se zaključi tek uz stanje blagajne + checklistu. Sve na hrvatskom, prvih 5 dana besplatno (bez kartice). Zaviri 👉 ${LINK} 🙌 Trenutno sam u {GRAD} pa rado skoknem pokazati uživo ako te zanima!`;
+function mailText(l){const g=CITY[l.c].gen;return `Predmet: mojlokal — raspored smjena za ${l.n} u par sekundi
+
+Pozdrav, ${l.n} tim! 👋
+
+Zovem se Matej. Radim na aplikaciji mojlokal — napravljena baš za kafiće i barove poput vašeg.
+
+Što rješava:
+• Raspored smjena za cijeli tjedan složi umjetna inteligencija u par sekundi — pošteno, prema satnici i željama svakog konobara
+• Konobari se prijavljuju PIN-om na mobitel — bez e-maila, bez komplikacija
+• Smjena se ne može zaključiti dok se ne upiše stanje blagajne i ne odradi checklista
+• Evidencija radnih sati i napojnica — sve na jednom mjestu, na hrvatskom
+
+Prvih 5 dana besplatno, bez kartice. Probajte odmah:
+${LINK}
+
+Trenutno sam u obilasku ${g} pa rado navratim pokazati uživo (5 min). Odgovara li vam ovaj tjedan?
+
+Lijep pozdrav,
+Matej — mojlokal · matej@mk-ki.at
+
+Ako vas ovo ne zanima, samo javite i neću vas više kontaktirati.`;}
+document.getElementById("tpl-mail").textContent = mailText({n:"{LOKAL}",c:"Split"}).replace("Splita","{GRAD}");
+function dmText(l){return `Pozdrav ${l.n}! 👋 Radim na aplikaciji mojlokal — za kafiće i barove: raspored smjena složi AI u par sekundi, konobari se prijavljuju PIN-om, a smjena se zaključi tek uz stanje blagajne + checklistu. Sve na hrvatskom, prvih 5 dana besplatno (bez kartice). Zaviri 👉 ${LINK} 🙌 Trenutno sam u ${CITY[l.c].loc} pa rado skoknem pokazati uživo ako te zanima!`;}
+
+// stats
+const cities=["Split","Makarska","Zagreb"];
+const nIg=LEADS.filter(l=>l.ig).length, nMail=LEADS.filter(l=>l.e).length;
+const statsEl=document.getElementById("stats");
+[["Ukupno",LEADS.length],["Split",LEADS.filter(l=>l.c==="Split").length],["Makarska",LEADS.filter(l=>l.c==="Makarska").length],["Zagreb",LEADS.filter(l=>l.c==="Zagreb").length],["s Instagramom",nIg],["s e-mailom",nMail]].forEach(([lab,n])=>{const d=document.createElement("div");d.className="stat";const b=document.createElement("b");b.textContent=n;const s=document.createElement("span");s.textContent=lab;d.append(b,s);statsEl.append(d);});
+
+// filters
+let filter="all";
+const fEl=document.getElementById("filters");
+[["all","Sve"],["Split","Split"],["Makarska","Makarska"],["Zagreb","Zagreb"],["ig","Samo Instagram"],["email","Samo e-mail"]].forEach(([k,lab])=>{const b=document.createElement("button");b.className="chip";b.textContent=lab;b.setAttribute("aria-pressed",k==="all"?"true":"false");b.onclick=()=>{filter=k;[...fEl.children].forEach(c=>c.setAttribute("aria-pressed","false"));b.setAttribute("aria-pressed","true");render();};fEl.append(b);});
+
+function copyBtn(label,cls,get){const b=document.createElement("button");b.className="copy "+cls;b.textContent=label;b.onclick=async()=>{try{await navigator.clipboard.writeText(get());}catch{const ta=document.createElement("textarea");ta.value=get();document.body.append(ta);ta.select();document.execCommand("copy");ta.remove();}const o=b.textContent;b.textContent="✓ Kopirano";b.classList.add("done");setTimeout(()=>{b.textContent=o;b.classList.remove("done");},1500);};return b;}
+
+function card(l){
+  const el=document.createElement("div");el.className="card";
+  const top=document.createElement("div");top.className="card-top";
+  const left=document.createElement("div");
+  const h=document.createElement("h4");h.textContent=l.n;
+  const a=document.createElement("div");a.className="area";a.textContent=l.a;
+  left.append(h,a);
+  const badge=document.createElement("span");badge.className="badge "+(l.cf==="v"?"v":"l");badge.textContent=l.cf==="v"?"provjereno":"provjeri";
+  top.append(left,badge);
+  const chan=document.createElement("div");chan.className="chan";
+  if(l.ig){const x=document.createElement("a");x.href=l.igUrl;x.target="_blank";x.rel="noopener";x.textContent="📷 @"+l.ig;chan.append(x);}
+  if(l.e){const x=document.createElement("a");x.href="mailto:"+l.e;x.textContent="✉ "+l.e;chan.append(x);}
+  if(l.w){const x=document.createElement("a");x.href=l.w;x.target="_blank";x.rel="noopener";x.textContent="🌐 web";chan.append(x);}
+  if(!l.ig&&!l.e&&!l.w){const n=document.createElement("span");n.className="none";n.textContent="Kontakt na licu mjesta / Google";chan.append(n);}
+  const act=document.createElement("div");act.className="actions";
+  if(l.ig) act.append(copyBtn("Kopiraj DM","dm",()=>dmText(l)));
+  if(l.e) act.append(copyBtn("Kopiraj e-mail","mail",()=>mailText(l)));
+  el.append(top,chan);
+  if(act.children.length) el.append(act);
+  return el;
+}
+
+function render(){
+  const root=document.getElementById("leads");root.innerHTML="";
+  let total=0;
+  cities.filter(c=>filter==="all"||filter==="ig"||filter==="email"||filter===c).forEach(c=>{
+    let list=LEADS.filter(l=>l.c===c);
+    if(filter==="ig") list=list.filter(l=>l.ig);
+    if(filter==="email") list=list.filter(l=>l.e);
+    if(!list.length) return;
+    total+=list.length;
+    // verified/with-contact first
+    list.sort((x,y)=>((y.ig||y.e?2:0)+(y.cf==="v"?1:0))-((x.ig||x.e?2:0)+(x.cf==="v"?1:0)));
+    const hh=document.createElement("div");hh.className="city-h";
+    const h2=document.createElement("h2");h2.className="serif";h2.textContent=c;
+    const cnt=document.createElement("span");cnt.className="count";cnt.textContent=list.length+" lokala";
+    hh.append(h2,cnt);
+    const grid=document.createElement("div");grid.className="grid";
+    list.forEach(l=>grid.append(card(l)));
+    root.append(hh,grid);
+  });
+  document.getElementById("filterinfo").textContent = `${total} lokala prikazano`;
+}
+
+document.querySelectorAll("button.copy[data-tpl]").forEach(b=>{b.onclick=async()=>{const id=b.dataset.tpl==="dm"?"tpl-dm":"tpl-mail";const t=document.getElementById(id).textContent;try{await navigator.clipboard.writeText(t);}catch{}const o=b.textContent;b.textContent="✓ Kopirano";b.classList.add("done");setTimeout(()=>{b.textContent=o;b.classList.remove("done");},1500);};});
+
+render();
+</script>
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => navigator.serviceWorker.register("/sw.js").catch(() => {}));
+}
+</script>
+</body>
+</html>
