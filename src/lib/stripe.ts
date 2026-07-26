@@ -37,7 +37,7 @@ export async function earlyBirdCouponId(regularMonthly: number): Promise<string>
       currency: "eur",
       duration: "repeating",
       duration_in_months: 12,
-      name: "mojlokal — prva godina (popust za prvih 20)",
+      name: "mojlokal — prva godina (popust)",
     });
     return coupon.id;
   }
