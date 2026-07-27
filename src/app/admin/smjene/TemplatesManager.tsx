@@ -65,7 +65,7 @@ export function TemplatesManager({
       ) : (
         <div className="space-y-3">
           {templates.map((tpl) => (
-            <Card key={tpl.id} className="flex flex-wrap items-center gap-3 p-4">
+            <Card key={tpl.id} className="space-y-3 p-4">
               <Input
                 defaultValue={tpl.name}
                 onBlur={(e) => {
@@ -76,45 +76,48 @@ export function TemplatesManager({
                     });
                   }
                 }}
-                className="min-w-[10rem] flex-1"
+                className="w-full"
               />
-              <Input
-                type="time"
-                defaultValue={formatTime(tpl.start_time)}
-                onBlur={(e) =>
-                  startTransition(async () => {
-                    await updateTemplate(tpl.id, { start: e.target.value });
-                    router.refresh();
-                  })
-                }
-                className="w-28"
-              />
-              <Input
-                type="time"
-                defaultValue={formatTime(tpl.end_time)}
-                onBlur={(e) =>
-                  startTransition(async () => {
-                    await updateTemplate(tpl.id, { end: e.target.value });
-                    router.refresh();
-                  })
-                }
-                className="w-28"
-              />
-              <Button
-                variant="danger"
-                disabled={pending}
-                onClick={() => {
-                  if (confirm(t("common.confirmDelete"))) {
+              <div className="flex items-center gap-2">
+                <Input
+                  type="time"
+                  defaultValue={formatTime(tpl.start_time)}
+                  onBlur={(e) =>
                     startTransition(async () => {
-                      await deleteTemplate(tpl.id);
+                      await updateTemplate(tpl.id, { start: e.target.value });
                       router.refresh();
-                    });
+                    })
                   }
-                }}
-                aria-label={t("common.delete")}
-              >
-                <Trash2 className="h-4 w-4" />
-              </Button>
+                  className="flex-1"
+                />
+                <Input
+                  type="time"
+                  defaultValue={formatTime(tpl.end_time)}
+                  onBlur={(e) =>
+                    startTransition(async () => {
+                      await updateTemplate(tpl.id, { end: e.target.value });
+                      router.refresh();
+                    })
+                  }
+                  className="flex-1"
+                />
+                <Button
+                  variant="danger"
+                  disabled={pending}
+                  onClick={() => {
+                    if (confirm(t("common.confirmDelete"))) {
+                      startTransition(async () => {
+                        await deleteTemplate(tpl.id);
+                        router.refresh();
+                      });
+                    }
+                  }}
+                  aria-label={t("common.delete")}
+                  className="shrink-0"
+                >
+                  <Trash2 className="h-4 w-4" />
+                </Button>
+              </div>
             </Card>
           ))}
         </div>
@@ -134,33 +137,40 @@ export function TemplatesManager({
               router.refresh();
             });
           }}
-          className="flex flex-wrap items-end gap-3"
+          className="space-y-3"
         >
-          <div className="min-w-[10rem] flex-1">
+          <div>
             <Label htmlFor="tplName">{t("shiftsAdmin.name")}</Label>
-            <Input id="tplName" value={name} onChange={(e) => setName(e.target.value)} />
-          </div>
-          <div>
-            <Label htmlFor="tplStart">{t("shiftsAdmin.from")}</Label>
             <Input
-              id="tplStart"
-              type="time"
-              value={start}
-              onChange={(e) => setStart(e.target.value)}
-              className="w-28"
+              id="tplName"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="w-full"
             />
           </div>
-          <div>
-            <Label htmlFor="tplEnd">{t("shiftsAdmin.to")}</Label>
-            <Input
-              id="tplEnd"
-              type="time"
-              value={end}
-              onChange={(e) => setEnd(e.target.value)}
-              className="w-28"
-            />
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <Label htmlFor="tplStart">{t("shiftsAdmin.from")}</Label>
+              <Input
+                id="tplStart"
+                type="time"
+                value={start}
+                onChange={(e) => setStart(e.target.value)}
+                className="w-full"
+              />
+            </div>
+            <div>
+              <Label htmlFor="tplEnd">{t("shiftsAdmin.to")}</Label>
+              <Input
+                id="tplEnd"
+                type="time"
+                value={end}
+                onChange={(e) => setEnd(e.target.value)}
+                className="w-full"
+              />
+            </div>
           </div>
-          <Button type="submit" disabled={pending || !name.trim()}>
+          <Button type="submit" disabled={pending || !name.trim()} className="w-full">
             <Plus className="h-4 w-4" /> {t("common.add")}
           </Button>
         </form>

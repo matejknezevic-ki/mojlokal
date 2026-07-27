@@ -195,7 +195,17 @@ export const de: Record<TKey, string> = {
   "cash.date": "Datum",
   "cash.note": "Notiz",
   "cash.empty": "Noch keine Kassa-Einträge.",
+  "cash.emptyPeriod": "Keine Einträge im gewählten Zeitraum.",
   "cash.filterAll": "Alle Kellner",
+  "cash.pAll": "Alle",
+  "cash.pThisMonth": "Dieser Monat",
+  "cash.pLastMonth": "Letzter Monat",
+  "cash.custom": "Zeitraum",
+  "cash.from": "Von",
+  "cash.to": "Bis",
+  "cash.apply": "Anwenden",
+  "cash.total": "Gesamt",
+  "cash.entries": "Einträge",
 
   // Hours admin
   "hoursAdmin.title": "Geleistete Stunden",

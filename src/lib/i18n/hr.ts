@@ -193,7 +193,17 @@ export const hr = {
   "cash.date": "Datum",
   "cash.note": "Napomena",
   "cash.empty": "Još nema unosa blagajne.",
+  "cash.emptyPeriod": "Nema unosa u odabranom razdoblju.",
   "cash.filterAll": "Svi konobari",
+  "cash.pAll": "Sve",
+  "cash.pThisMonth": "Ovaj mjesec",
+  "cash.pLastMonth": "Prošli mjesec",
+  "cash.custom": "Raspon",
+  "cash.from": "Od",
+  "cash.to": "Do",
+  "cash.apply": "Primijeni",
+  "cash.total": "Ukupno",
+  "cash.entries": "unosa",
 
   // Hours admin
   "hoursAdmin.title": "Odrađeni sati",
