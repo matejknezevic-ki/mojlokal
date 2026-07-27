@@ -12,7 +12,9 @@ import type { ShiftTemplate, Waiter } from "@/lib/types";
 
 export const maxDuration = 120;
 
-const SCHEDULER_SYSTEM_PROMPT = `You are a fair shift scheduler for a café. You receive JSON with:
+function schedulerSystemPrompt(locale: "hr" | "de"): string {
+  const notesLang = locale === "de" ? "German" : "Croatian";
+  return `You are a fair shift scheduler for a café. You receive JSON with:
 - weekStart (Monday, YYYY-MM-DD), openingDays (ISO weekdays 1=Mon..7=Sun)
 - waiters: id, name, target_shifts_per_week, availability (a map where "3": false means the waiter can NOT work on weekday 3)
 - templates: shift templates with id, name, start_time, end_time
@@ -25,7 +27,8 @@ Create the weekly schedule. Rules, in priority order:
 4. Distribute shifts so each waiter ends as close as possible to their target_shifts_per_week; spread any unavoidable deviation evenly.
 5. Prefer giving each waiter consecutive days off where possible.
 
-Work fast and mechanically — no lengthy deliberation. Return assignments for the whole week and ONE short "notes" sentence in Croatian summarizing the fairness outcome (e.g. who got more/fewer shifts than requested and why).`;
+Work fast and mechanically — no lengthy deliberation. Return assignments for the whole week and ONE short "notes" sentence, written in ${notesLang}, summarizing the fairness outcome (e.g. who got more/fewer shifts than requested and why).`;
+}
 
 const OUTPUT_SCHEMA = {
   type: "object" as const,
@@ -45,7 +48,7 @@ const OUTPUT_SCHEMA = {
     },
     notes: {
       type: "string" as const,
-      description: "Short Croatian summary of fairness decisions",
+      description: "Short summary of fairness decisions, in the language set by the system prompt",
     },
   },
   required: ["assignments", "notes"],
@@ -53,7 +56,8 @@ const OUTPUT_SCHEMA = {
 };
 
 async function generateWithClaude(
-  input: SchedulerInput
+  input: SchedulerInput,
+  locale: "hr" | "de"
 ): Promise<{ assignments: Assignment[]; notes: string } | null> {
   if (!process.env.ANTHROPIC_API_KEY) return null;
   try {
@@ -64,7 +68,7 @@ async function generateWithClaude(
       model: "claude-sonnet-5",
       max_tokens: 4000,
       thinking: { type: "disabled" },
-      system: SCHEDULER_SYSTEM_PROMPT,
+      system: schedulerSystemPrompt(locale),
       messages: [{ role: "user", content: JSON.stringify(input) }],
       output_config: {
         effort: "low",
@@ -140,7 +144,10 @@ export async function POST(request: Request) {
     timeOff,
   };
 
-  const aiResult = await generateWithClaude(input);
+  const aiResult = await generateWithClaude(
+    input,
+    venue.default_locale === "de" ? "de" : "hr"
+  );
   const assignments = aiResult
     ? validateAndRepair(input, aiResult.assignments)
     : fallbackSchedule(input);

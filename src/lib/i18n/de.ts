@@ -210,6 +210,7 @@ export const de: Record<TKey, string> = {
 
   // Settings admin
   "settings.title": "Einstellungen",
+  "settings.manage": "Verwaltung",
   "settings.venueName": "Name des Lokals",
   "settings.ownerName": "Dein Name",
   "settings.language": "Sprache der App",

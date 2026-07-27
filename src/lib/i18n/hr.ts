@@ -208,6 +208,7 @@ export const hr = {
 
   // Settings admin
   "settings.title": "Postavke",
+  "settings.manage": "Upravljanje lokalom",
   "settings.venueName": "Naziv lokala",
   "settings.ownerName": "Tvoje ime",
   "settings.language": "Jezik aplikacije",
