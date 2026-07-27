@@ -179,12 +179,12 @@ export function ScheduleGrid({
       ) : (
         <>
           <Card className="overflow-x-auto">
-            <table className="w-full min-w-[640px] border-collapse text-sm">
+            <table className="w-full border-collapse text-sm">
               <thead>
                 <tr className="border-b border-espresso/10 text-left">
                   <th className="px-4 py-3 font-semibold text-espresso/50"></th>
                   {days.map((d) => (
-                    <th key={d} className="px-3 py-3 text-center">
+                    <th key={d} className="min-w-[8rem] px-3 py-3 text-center">
                       <div className="font-bold">
                         {t(`day.short.${isoWeekday(d)}` as Parameters<typeof t>[0])}
                       </div>
@@ -207,13 +207,13 @@ export function ScheduleGrid({
                     {days.map((d) => {
                       const shift = shiftFor(d, tpl.id);
                       return (
-                        <td key={d} className="px-1.5 py-2 text-center">
+                        <td key={d} className="min-w-[8rem] px-1.5 py-2 text-center">
                           {shift ? (
                             <select
                               value={shift.waiter_id}
                               disabled={pending}
                               onChange={(e) => reassign(shift.id, e.target.value)}
-                              className="w-full max-w-[9rem] cursor-pointer rounded-lg border border-espresso/10 bg-cream-dark/60 px-2 py-2 text-center text-sm font-semibold outline-none focus:border-terracotta"
+                              className="w-full cursor-pointer truncate rounded-lg border border-espresso/10 bg-cream-dark/60 px-3 py-2 text-sm font-semibold outline-none focus:border-terracotta"
                             >
                               {waiters.map((w) => (
                                 <option key={w.id} value={w.id}>

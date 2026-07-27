@@ -27,17 +27,17 @@ export default async function AdminLayout({
       )}
       <header className="sticky top-0 z-40 border-b border-espresso/10 bg-cream/90 backdrop-blur">
         <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-5 py-3">
-          <Link href="/admin" className="flex items-center gap-2">
-            <Coffee className="h-5 w-5 text-terracotta" />
-            <span className="font-display text-lg font-semibold">
+          <Link href="/admin" className="flex min-w-0 items-center gap-2">
+            <Coffee className="h-5 w-5 shrink-0 text-terracotta" />
+            <span className="truncate font-display text-lg font-semibold">
               {venue.name}
             </span>
           </Link>
-          <div className="flex items-center gap-2">
+          <div className="flex shrink-0 items-center gap-2">
             <form action={switchToWaiterMode}>
               <button
                 type="submit"
-                className="inline-flex items-center gap-1.5 rounded-xl border border-espresso/15 px-3 py-1.5 text-xs font-semibold text-espresso hover:bg-espresso/5"
+                className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-xl border border-espresso/15 px-3 py-1.5 text-xs font-semibold text-espresso hover:bg-espresso/5"
               >
                 <UserRound className="h-3.5 w-3.5" />
                 {t("mode.workAsWaiter")}
