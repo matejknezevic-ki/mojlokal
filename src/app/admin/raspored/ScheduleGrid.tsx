@@ -100,6 +100,21 @@ export function ScheduleGrid({
 
   const canGenerate = waiters.length > 0 && templates.length > 0;
 
+  const waiterSelect = (shift: Shift) => (
+    <select
+      value={shift.waiter_id}
+      disabled={pending}
+      onChange={(e) => reassign(shift.id, e.target.value)}
+      className="w-full cursor-pointer truncate rounded-lg border border-espresso/10 bg-cream-dark/60 px-3 py-2 text-sm font-semibold outline-none focus:border-terracotta"
+    >
+      {waiters.map((w) => (
+        <option key={w.id} value={w.id}>
+          {w.name}
+        </option>
+      ))}
+    </select>
+  );
+
   return (
     <div className="space-y-4">
       {/* Progress overlay while the AI plans + the fresh data loads */}
@@ -178,7 +193,48 @@ export function ScheduleGrid({
         )
       ) : (
         <>
-          <Card className="overflow-x-auto">
+          {/* Mobile: whole week at a glance, one card per day (scroll down) */}
+          <div className="space-y-3 lg:hidden">
+            {days.map((d) => (
+              <Card key={d} className="p-4">
+                <div className="mb-3 flex items-baseline justify-between border-b border-espresso/10 pb-2">
+                  <span className="font-display text-base font-bold">
+                    {t(`day.${isoWeekday(d)}` as Parameters<typeof t>[0])}
+                  </span>
+                  <span className="text-xs text-espresso/40 tabular-nums">
+                    {d.slice(8, 10)}.{d.slice(5, 7)}.
+                  </span>
+                </div>
+                <div className="space-y-2.5">
+                  {templates.map((tpl) => {
+                    const shift = shiftFor(d, tpl.id);
+                    return (
+                      <div key={tpl.id} className="flex items-center justify-between gap-3">
+                        <div className="min-w-0">
+                          <div className="truncate font-semibold">{tpl.name}</div>
+                          <div className="text-xs text-espresso/40 tabular-nums">
+                            {formatTime(tpl.start_time)}–{formatTime(tpl.end_time)}
+                          </div>
+                        </div>
+                        <div className="w-36 shrink-0">
+                          {shift ? (
+                            waiterSelect(shift)
+                          ) : (
+                            <span className="block text-right text-sm text-espresso/25">
+                              {t("schedule.nobody")}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </Card>
+            ))}
+          </div>
+
+          {/* Desktop: full-week matrix */}
+          <Card className="hidden overflow-x-auto lg:block">
             <table className="w-full border-collapse text-sm">
               <thead>
                 <tr className="border-b border-espresso/10 text-left">
@@ -209,18 +265,7 @@ export function ScheduleGrid({
                       return (
                         <td key={d} className="min-w-[8rem] px-1.5 py-2 text-center">
                           {shift ? (
-                            <select
-                              value={shift.waiter_id}
-                              disabled={pending}
-                              onChange={(e) => reassign(shift.id, e.target.value)}
-                              className="w-full cursor-pointer truncate rounded-lg border border-espresso/10 bg-cream-dark/60 px-3 py-2 text-sm font-semibold outline-none focus:border-terracotta"
-                            >
-                              {waiters.map((w) => (
-                                <option key={w.id} value={w.id}>
-                                  {w.name}
-                                </option>
-                              ))}
-                            </select>
+                            waiterSelect(shift)
                           ) : (
                             <span className="text-espresso/25">{t("schedule.nobody")}</span>
                           )}

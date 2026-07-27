@@ -343,7 +343,7 @@ export const de: Record<TKey, string> = {
   "badge.earlybird": "Frühaufsteher",
 
   // Team
-  "team.today": "Heute arbeitet mit dir",
+  "team.today": "Heute arbeitet",
   "team.todayNone": "Heute steht sonst niemand im Plan.",
   "team.week": "Team diese Woche",
 
