@@ -265,7 +265,7 @@ export async function publishSchedule(scheduleId: string) {
   if (data?.venue_id) {
     const { notifyVenueWaiters } = await import("@/lib/push");
     await notifyVenueWaiters(data.venue_id, {
-      title: "mojlokal",
+      title: "Gastroplaner",
       body: "Novi raspored smjena je objavljen! 📅",
       url: "/w/app",
     }).catch(() => {});
@@ -289,7 +289,7 @@ export async function resolveTimeOff(requestId: string, approve: boolean) {
     const { notifyWaiter } = await import("@/lib/push");
     const d = `${data.off_date.slice(8, 10)}.${data.off_date.slice(5, 7)}.`;
     await notifyWaiter(data.waiter_id, {
-      title: "mojlokal",
+      title: "Gastroplaner",
       body: approve
         ? `Slobodan dan ${d} je odobren ✅`
         : `Zahtjev za slobodan dan ${d} je odbijen`,
@@ -327,19 +327,19 @@ export async function resolveSwap(swapId: string, approve: boolean) {
   if (approve) {
     await Promise.allSettled([
       notifyWaiter(swap.to_waiter_id, {
-        title: "mojlokal",
+        title: "Gastroplaner",
         body: `Zamjena odobrena — smjena ${d} je tvoja ✅`,
         url,
       }),
       notifyWaiter(swap.from_waiter_id, {
-        title: "mojlokal",
+        title: "Gastroplaner",
         body: `Zamjena odobrena — smjenu ${d} preuzima kolega ✅`,
         url,
       }),
     ]);
   } else {
     await notifyWaiter(swap.to_waiter_id, {
-      title: "mojlokal",
+      title: "Gastroplaner",
       body: `Zamjena za ${d} je odbijena`,
       url,
     }).catch(() => {});

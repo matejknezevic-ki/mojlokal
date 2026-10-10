@@ -73,7 +73,7 @@ export default async function SuperAdminPage() {
   return (
     <div className="mx-auto w-full max-w-3xl px-5 py-8">
       <h1 className="flex items-center gap-2 font-display text-2xl font-semibold">
-        <ShieldCheck className="h-6 w-6 text-terracotta" /> mojlokal Superadmin
+        <ShieldCheck className="h-6 w-6 text-terracotta" /> Gastroplaner Superadmin
       </h1>
       <p className="mt-1 text-sm text-espresso-light">
         Wer hat sich wann und wo angemeldet — plus freischalten, Testphase

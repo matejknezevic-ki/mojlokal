@@ -43,7 +43,7 @@ export async function POST(request: Request) {
     await notifyVenueWaiters(
       session.venueId,
       {
-        title: "mojlokal",
+        title: "Gastroplaner",
         body: `${session.name} nudi smjenu ${fmt(shift.shift_date)} — otvori raspored 🔄`,
         url: "/w/app/raspored",
       },
@@ -86,7 +86,7 @@ export async function POST(request: Request) {
     });
     if (error) return NextResponse.json({ error: "db" }, { status: 500 });
     await notifyWaiter(shift.waiter_id, {
-      title: "mojlokal",
+      title: "Gastroplaner",
       body: `${session.name} želi preuzeti tvoju smjenu ${fmt(shift.shift_date)} — šef odlučuje`,
       url: "/w/app/raspored",
     }).catch(() => {});

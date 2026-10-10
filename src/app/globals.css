@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  /* mojlokal café palette */
+  /* Gastroplaner café palette */
   --color-cream: #faf6f0;
   --color-cream-dark: #f3ecdf;
   --color-espresso: #3b2f2a;

@@ -41,8 +41,8 @@ export async function GET(
   const lines = [
     "BEGIN:VCALENDAR",
     "VERSION:2.0",
-    "PRODID:-//mojlokal//smjene//HR",
-    `X-WR-CALNAME:${venue?.name ?? "mojlokal"} — smjene`,
+    "PRODID:-//Gastroplaner//smjene//HR",
+    `X-WR-CALNAME:${venue?.name ?? "Gastroplaner"} — smjene`,
     "X-WR-TIMEZONE:Europe/Zagreb",
   ];
   for (const s of shifts ?? []) {
@@ -65,7 +65,7 @@ export async function GET(
       `DTSTAMP:${stamp}`,
       `DTSTART;TZID=Europe/Zagreb:${date}T${start}`,
       `DTEND;TZID=Europe/Zagreb:${endDateStr}T${end}`,
-      `SUMMARY:Smjena — ${venue?.name ?? "mojlokal"}`,
+      `SUMMARY:Smjena — ${venue?.name ?? "Gastroplaner"}`,
       "END:VEVENT"
     );
   }

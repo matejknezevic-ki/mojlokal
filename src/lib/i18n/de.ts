@@ -2,7 +2,7 @@ import type { TKey } from "./hr";
 
 export const de: Record<TKey, string> = {
   // Common
-  "common.appName": "mojlokal",
+  "common.appName": "Gastroplaner",
   "common.save": "Speichern",
   "common.cancel": "Abbrechen",
   "common.delete": "Löschen",
@@ -25,7 +25,7 @@ export const de: Record<TKey, string> = {
   "landing.tagline": "Dein Lokal. Unter Kontrolle.",
   "landing.heroTitle": "Schichtplan und Kassa im Griff — ganz ohne Papier",
   "landing.heroSubtitle":
-    "mojlokal ist die einfache App für Cafés und Bars: KI-Schichtplan, Arbeitszeiterfassung und Kassastand am Ende jeder Schicht.",
+    "Gastroplaner ist die einfache App für Cafés und Bars: KI-Schichtplan, Arbeitszeiterfassung und Kassastand am Ende jeder Schicht.",
   "landing.cta": "Kostenlos ausprobieren",
   "landing.trialNote": "5 Tage gratis — ohne Kreditkarte",
   "landing.ctaLogin": "Anmelden",
@@ -45,7 +45,7 @@ export const de: Record<TKey, string> = {
   "landing.demoStart": "SCHICHT STARTEN",
   "landing.demoShift": "Frühschicht · 06:00 – 14:00",
   "landing.demoHello": "Hallo, Ivana",
-  "landing.footer": "mojlokal — die App für dein Lokal",
+  "landing.footer": "Gastroplaner — die App für dein Lokal",
   "landing.imprint": "Impressum",
   "landing.privacy": "Datenschutz",
 
@@ -293,7 +293,7 @@ export const de: Record<TKey, string> = {
   "sub.title": "Abo",
   "sub.expiredTitle": "Die Testphase ist abgelaufen",
   "sub.expiredText":
-    "Wir hoffen, mojlokal hat dir gefallen! Aktiviere das Abo, um weiterzumachen — alle deine Daten bleiben erhalten.",
+    "Wir hoffen, Gastroplaner hat dir gefallen! Aktiviere das Abo, um weiterzumachen — alle deine Daten bleiben erhalten.",
   "sub.perMonth": "monatlich pro Lokal",
   "sub.oneTime": "einmalige Einrichtung",
   "sub.monthly": "monatlich",

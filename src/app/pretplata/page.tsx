@@ -48,14 +48,14 @@ export default async function SubscriptionPage({
 
   const oneTime = early ? ONE_TIME_PRICE_EARLY : ONE_TIME_PRICE;
   const monthly = early ? MONTHLY_PRICE_EARLY : MONTHLY_PRICE;
-  const mailSubject = encodeURIComponent(`mojlokal pretplata — ${venue.name}`);
+  const mailSubject = encodeURIComponent(`Gastroplaner pretplata — ${venue.name}`);
 
   return (
     <div className="mx-auto flex min-h-screen w-full max-w-md flex-col px-5 py-6">
       <header className="mb-10 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2">
           <Coffee className="h-6 w-6 text-terracotta" />
-          <span className="font-display text-xl font-semibold">mojlokal</span>
+          <span className="font-display text-xl font-semibold">Gastroplaner</span>
         </Link>
         <LocaleToggle />
       </header>

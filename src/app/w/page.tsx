@@ -16,7 +16,7 @@ export default async function WaiterEntryPage() {
       <header className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Coffee className="h-6 w-6 text-terracotta" />
-          <span className="font-display text-xl font-semibold">mojlokal</span>
+          <span className="font-display text-xl font-semibold">Gastroplaner</span>
         </div>
         <LocaleToggle />
       </header>

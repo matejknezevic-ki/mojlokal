@@ -1,9 +1,9 @@
-// mojlokal service worker: web push + notification click
+// Gastroplaner service worker: web push + notification click
 self.addEventListener("install", () => self.skipWaiting());
 self.addEventListener("activate", (event) => event.waitUntil(self.clients.claim()));
 
 self.addEventListener("push", (event) => {
-  let payload = { title: "mojlokal", body: "", url: "/w/app" };
+  let payload = { title: "Gastroplaner", body: "", url: "/w/app" };
   try {
     payload = { ...payload, ...event.data.json() };
   } catch {

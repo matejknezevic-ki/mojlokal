@@ -63,7 +63,7 @@ export async function POST(request: Request) {
             currency: "eur",
             unit_amount: amount,
             product_data: {
-              name: `mojlokal — jednokratno postavljanje (${venue.name})`,
+              name: `Gastroplaner — jednokratno postavljanje (${venue.name})`,
             },
           },
         },
@@ -88,7 +88,7 @@ export async function POST(request: Request) {
             unit_amount: Math.round(MONTHLY_PRICE * 100),
             recurring: { interval: "month" },
             product_data: {
-              name: `mojlokal — mjesečna pretplata (${venue.name})`,
+              name: `Gastroplaner — mjesečna pretplata (${venue.name})`,
             },
           },
         },

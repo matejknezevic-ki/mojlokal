@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>mojlokal — Lead-Kit</title>
+<title>Gastroplaner — Lead-Kit</title>
 <meta name="description" content="Cafés & Bars in Split, Makarska, Zagreb — Kontakte und fertige kroatische Anschreiben.">
 <meta name="theme-color" content="#c15f3c">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -89,7 +89,7 @@
 <body>
 <div class="wrap">
   <header>
-    <div class="brand"><span class="dot"></span> mojlokal · Lead-Kit</div>
+    <div class="brand"><span class="dot"></span> Gastroplaner · Lead-Kit</div>
     <h1 class="serif">Kafići i barovi za obilazak</h1>
     <p class="lede">Breite Lauf-Liste an Cafés, Bars, Beach-Bars und Coffee-Shops in Split, Makarska und Zagreb — Kontakt (Instagram/E-Mail) & Quelle wo öffentlich auffindbar, sonst Name + Lage fürs Abklappern vor Ort. Pro Laden ein fertiges kroatisches Anschreiben zum Kopieren.</p>
     <div class="stats" id="stats"></div>
@@ -405,12 +405,12 @@ for(const r of RAW){
 const LEADS = [...map.values()].map(l=>({...l, igUrl: l.ig?`https://www.instagram.com/${l.ig}/`:null }));
 
 // templates
-document.getElementById("tpl-dm").textContent = `Pozdrav {LOKAL}! 👋 Radim na aplikaciji mojlokal — za kafiće i barove: raspored smjena složi AI u par sekundi, konobari se prijavljuju PIN-om, a smjena se zaključi tek uz stanje blagajne + checklistu. Sve na hrvatskom, prvih 5 dana besplatno (bez kartice). Zaviri 👉 ${LINK} 🙌 Trenutno sam u {GRAD} pa rado skoknem pokazati uživo ako te zanima!`;
-function mailText(l){const g=CITY[l.c].gen;return `Predmet: mojlokal — raspored smjena za ${l.n} u par sekundi
+document.getElementById("tpl-dm").textContent = `Pozdrav {LOKAL}! 👋 Radim na aplikaciji Gastroplaner — za kafiće i barove: raspored smjena složi AI u par sekundi, konobari se prijavljuju PIN-om, a smjena se zaključi tek uz stanje blagajne + checklistu. Sve na hrvatskom, prvih 5 dana besplatno (bez kartice). Zaviri 👉 ${LINK} 🙌 Trenutno sam u {GRAD} pa rado skoknem pokazati uživo ako te zanima!`;
+function mailText(l){const g=CITY[l.c].gen;return `Predmet: Gastroplaner — raspored smjena za ${l.n} u par sekundi
 
 Pozdrav, ${l.n} tim! 👋
 
-Zovem se Matej. Radim na aplikaciji mojlokal — napravljena baš za kafiće i barove poput vašeg.
+Zovem se Matej. Radim na aplikaciji Gastroplaner — napravljena baš za kafiće i barove poput vašeg.
 
 Što rješava:
 • Raspored smjena za cijeli tjedan složi umjetna inteligencija u par sekundi — pošteno, prema satnici i željama svakog konobara
@@ -424,11 +424,11 @@ ${LINK}
 Trenutno sam u obilasku ${g} pa rado navratim pokazati uživo (5 min). Odgovara li vam ovaj tjedan?
 
 Lijep pozdrav,
-Matej — mojlokal · matej@mk-ki.at
+Matej — Gastroplaner · matej@mk-ki.at
 
 Ako vas ovo ne zanima, samo javite i neću vas više kontaktirati.`;}
 document.getElementById("tpl-mail").textContent = mailText({n:"{LOKAL}",c:"Split"}).replace("Splita","{GRAD}");
-function dmText(l){return `Pozdrav ${l.n}! 👋 Radim na aplikaciji mojlokal — za kafiće i barove: raspored smjena složi AI u par sekundi, konobari se prijavljuju PIN-om, a smjena se zaključi tek uz stanje blagajne + checklistu. Sve na hrvatskom, prvih 5 dana besplatno (bez kartice). Zaviri 👉 ${LINK} 🙌 Trenutno sam u ${CITY[l.c].loc} pa rado skoknem pokazati uživo ako te zanima!`;}
+function dmText(l){return `Pozdrav ${l.n}! 👋 Radim na aplikaciji Gastroplaner — za kafiće i barove: raspored smjena složi AI u par sekundi, konobari se prijavljuju PIN-om, a smjena se zaključi tek uz stanje blagajne + checklistu. Sve na hrvatskom, prvih 5 dana besplatno (bez kartice). Zaviri 👉 ${LINK} 🙌 Trenutno sam u ${CITY[l.c].loc} pa rado skoknem pokazati uživo ako te zanima!`;}
 
 // stats
 const cities=["Split","Makarska","Zagreb"];

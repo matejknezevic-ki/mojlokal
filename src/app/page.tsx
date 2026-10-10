@@ -38,7 +38,7 @@ export default async function LandingPage() {
       <header className="mx-auto flex w-full max-w-5xl items-center justify-between px-5 py-5">
         <div className="flex items-center gap-2">
           <Coffee className="h-6 w-6 text-terracotta" />
-          <span className="font-display text-xl font-semibold">mojlokal</span>
+          <span className="font-display text-xl font-semibold">Gastroplaner</span>
         </div>
         <div className="flex items-center gap-3">
           <LocaleToggle />

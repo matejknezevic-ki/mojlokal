@@ -31,7 +31,7 @@ export async function GET(request: Request) {
   await Promise.allSettled(
     (shifts ?? []).map(async (s) => {
       await notifyWaiter(s.waiter_id, {
-        title: "mojlokal",
+        title: "Gastroplaner",
         body: `Podsjetnik: sutra radiš ${formatTime(s.start_time)}–${formatTime(s.end_time)} ⏰`,
         url: "/w/app",
       });

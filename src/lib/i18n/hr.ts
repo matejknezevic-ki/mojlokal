@@ -1,6 +1,6 @@
 export const hr = {
   // Common
-  "common.appName": "mojlokal",
+  "common.appName": "Gastroplaner",
   "common.save": "Spremi",
   "common.cancel": "Odustani",
   "common.delete": "Obriši",
@@ -23,7 +23,7 @@ export const hr = {
   "landing.tagline": "Tvoj kafić. Pod kontrolom.",
   "landing.heroTitle": "Raspored smjena i blagajna pod kontrolom — bez papira",
   "landing.heroSubtitle":
-    "mojlokal je jednostavna aplikacija za kafiće i barove: AI raspored smjena, evidencija radnog vremena i stanje blagajne na kraju svake smjene.",
+    "Gastroplaner je jednostavna aplikacija za kafiće i barove: AI raspored smjena, evidencija radnog vremena i stanje blagajne na kraju svake smjene.",
   "landing.cta": "Isprobaj besplatno",
   "landing.trialNote": "5 dana besplatno — bez kartice",
   "landing.ctaLogin": "Prijava",
@@ -43,7 +43,7 @@ export const hr = {
   "landing.demoStart": "ZAPOČNI SMJENU",
   "landing.demoShift": "Jutarnja smjena · 06:00 – 14:00",
   "landing.demoHello": "Bok, Ivana",
-  "landing.footer": "mojlokal — aplikacija za vođenje kafića",
+  "landing.footer": "Gastroplaner — aplikacija za vođenje kafića",
   "landing.imprint": "Impressum",
   "landing.privacy": "Privatnost",
 
@@ -291,7 +291,7 @@ export const hr = {
   "sub.title": "Pretplata",
   "sub.expiredTitle": "Probni period je istekao",
   "sub.expiredText":
-    "Nadamo se da ti se mojlokal svidio! Za nastavak korištenja aktiviraj pretplatu — svi tvoji podaci ostaju sačuvani.",
+    "Nadamo se da ti se Gastroplaner svidio! Za nastavak korištenja aktiviraj pretplatu — svi tvoji podaci ostaju sačuvani.",
   "sub.perMonth": "mjesečno po lokalu",
   "sub.oneTime": "jednokratno postavljanje",
   "sub.monthly": "mjesečno",

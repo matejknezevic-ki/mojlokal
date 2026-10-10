@@ -7,7 +7,7 @@ export default function ImprintPage() {
     <div className="mx-auto w-full max-w-2xl px-5 py-10">
       <Link href="/" className="mb-8 flex items-center gap-2">
         <Coffee className="h-5 w-5 text-terracotta" />
-        <span className="font-display text-lg font-semibold">mojlokal</span>
+        <span className="font-display text-lg font-semibold">Gastroplaner</span>
       </Link>
 
       <h1 className="font-display text-3xl font-semibold">Impressum</h1>

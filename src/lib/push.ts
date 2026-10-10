@@ -15,7 +15,7 @@ async function sendToSubs(
 ) {
   if (!configured() || subs.length === 0) return;
   webpush.setVapidDetails(
-    process.env.VAPID_SUBJECT || "mailto:info@mojlokal.app",
+    process.env.VAPID_SUBJECT || "mailto:info@gastroplaner.app",
     process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY!,
     process.env.VAPID_PRIVATE_KEY!
   );

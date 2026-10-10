@@ -15,14 +15,14 @@ const instrument = Instrument_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "mojlokal — raspored smjena i blagajna za tvoj kafić",
+  title: "Gastroplaner — raspored smjena i blagajna za tvoj kafić",
   description:
     "Jednostavna aplikacija za kafiće i barove: AI raspored smjena, evidencija radnog vremena i stanje blagajne.",
   manifest: "/manifest.webmanifest",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "mojlokal",
+    title: "Gastroplaner",
   },
   icons: {
     icon: [{ url: "/icon-192.png", sizes: "192x192", type: "image/png" }],

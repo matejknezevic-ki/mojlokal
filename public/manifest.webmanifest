@@ -1,6 +1,6 @@
 {
-  "name": "mojlokal",
-  "short_name": "mojlokal",
+  "name": "Gastroplaner",
+  "short_name": "Gastroplaner",
   "description": "Raspored smjena i blagajna za tvoj kafić",
   "start_url": "/w/app",
   "scope": "/",
